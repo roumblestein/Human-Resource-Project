@@ -70,31 +70,6 @@ LOCK TABLES `employment` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `performance history`
---
-
-DROP TABLE IF EXISTS `performance history`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `performance history` (
-  `userlogin_SSN` int(11) NOT NULL,
-  `Skill` varchar(45) NOT NULL,
-  `Performance history` varchar(45) NOT NULL,
-  PRIMARY KEY (`userlogin_SSN`,`Skill`),
-  CONSTRAINT `fk_Performance history_userlogin_has_Skills1` FOREIGN KEY (`userlogin_SSN`, `Skill`) REFERENCES `userlogin_has_skills` (`userlogin_SSN`, `Skill`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `performance history`
---
-
-LOCK TABLES `performance history` WRITE;
-/*!40000 ALTER TABLE `performance history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `performance history` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `personal phone`
 --
 
@@ -176,10 +151,11 @@ DROP TABLE IF EXISTS `skills`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `skills` (
+  `idSkill` int(11) NOT NULL AUTO_INCREMENT,
   `Skill` varchar(45) NOT NULL,
   `Level` varchar(45) NOT NULL,
   `Skillcategory` varchar(45) NOT NULL,
-  PRIMARY KEY (`Skill`)
+  PRIMARY KEY (`idSkill`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -246,7 +222,7 @@ CREATE TABLE `userlogin` (
 
 LOCK TABLES `userlogin` WRITE;
 /*!40000 ALTER TABLE `userlogin` DISABLE KEYS */;
-INSERT INTO `userlogin` VALUES (1111111111,1,'admin','Admin','Martin','Månsson','Hr-project@gmail.com','Sjöcronas 12');
+INSERT INTO `userlogin` VALUES (1111111111,1,'admin','Admin','Martin',' Månsson','hr-project@gmail.com','sjöcronas');
 /*!40000 ALTER TABLE `userlogin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,13 +235,13 @@ DROP TABLE IF EXISTS `userlogin_has_skills`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `userlogin_has_skills` (
   `userlogin_SSN` int(11) NOT NULL,
-  `Skill` varchar(45) NOT NULL,
+  `idSkill` int(11) NOT NULL,
   `Experience` varchar(45) NOT NULL,
   `Performance` varchar(45) NOT NULL,
-  PRIMARY KEY (`userlogin_SSN`,`Skill`),
-  KEY `fk_userlogin_has_Skills_Skills1_idx` (`Skill`),
+  PRIMARY KEY (`userlogin_SSN`,`idSkill`),
   KEY `fk_userlogin_has_Skills_userlogin1_idx` (`userlogin_SSN`),
-  CONSTRAINT `fk_userlogin_has_Skills_Skills1` FOREIGN KEY (`Skill`) REFERENCES `skills` (`Skill`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `fk_userlogin_has_Skills_Skills1_idx` (`idSkill`),
+  CONSTRAINT `fk_userlogin_has_Skills_Skills1` FOREIGN KEY (`idSkill`) REFERENCES `skills` (`idSkill`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_userlogin_has_Skills_userlogin1` FOREIGN KEY (`userlogin_SSN`) REFERENCES `userlogin` (`SSN`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -288,4 +264,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-22  2:02:36
+-- Dump completed on 2018-04-22 19:42:03
