@@ -37,6 +37,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
+INSERT INTO `department` VALUES (1,'sjöcronas','Boss@gmail.com','VD');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,6 +246,7 @@ CREATE TABLE `userlogin` (
 
 LOCK TABLES `userlogin` WRITE;
 /*!40000 ALTER TABLE `userlogin` DISABLE KEYS */;
+INSERT INTO `userlogin` VALUES (1111111111,1,'admin','Admin','Martin','Månsson','Hr-project@gmail.com','Sjöcronas 12');
 /*!40000 ALTER TABLE `userlogin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -286,4 +288,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-21  3:08:35
+-- Dump completed on 2018-04-22  2:02:36
