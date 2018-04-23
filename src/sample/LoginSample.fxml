@@ -2,7 +2,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,22 +22,35 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="SsnText" layoutX="274.0" layoutY="135.0" prefHeight="25.0" prefWidth="277.0" />
-      <Label layoutX="274.0" layoutY="101.0" prefHeight="25.0" prefWidth="161.0" text="Username:">
+      <TextField fx:id="SsnText" layoutX="274.0" layoutY="135.0" prefHeight="25.0" prefWidth="277.0">
+         <tooltip>
+            <Tooltip text="Empty Tooltip" />
+         </tooltip></TextField>
+      <Label layoutX="274.0" layoutY="101.0" prefHeight="25.0" prefWidth="161.0" text="Ssn:">
          <font>
             <Font size="18.0" />
          </font>
+         <tooltip>
+            <Tooltip text="Social security number" />
+         </tooltip>
       </Label>
-      <TextField fx:id="PasswordText" layoutX="274.0" layoutY="251.0" prefHeight="25.0" prefWidth="277.0" />
       <Label layoutX="274.0" layoutY="217.0" prefHeight="25.0" prefWidth="161.0" text="Password:">
          <font>
             <Font size="18.0" />
          </font>
+         <tooltip>
+            <Tooltip text="Empty Tooltip" />
+         </tooltip>
       </Label>
       <Button layoutX="435.0" layoutY="318.0" mnemonicParsing="false" onAction="#forgotButton" prefHeight="39.0" prefWidth="175.0" text="Forgot Password?">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
+      <PasswordField fx:id="PasswordText" layoutX="277.0" layoutY="256.0" prefHeight="25.0" prefWidth="277.0">
+         <tooltip>
+            <Tooltip text="Empty Tooltip" />
+         </tooltip>
+      </PasswordField>
    </children>
 </AnchorPane>
