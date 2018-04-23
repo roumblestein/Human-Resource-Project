@@ -15,30 +15,24 @@
             <Image url="@../Images/Skärmklipp.PNG" />
          </image>
       </ImageView>
-      <TextField fx:id="SsnText" layoutX="299.0" layoutY="133.0" prefHeight="32.0" prefWidth="262.0" />
-      <TextField fx:id="emailCode" disable="true" editable="false" layoutX="299.0" layoutY="237.0" prefHeight="32.0" prefWidth="262.0" />
-      <Label layoutX="299.0" layoutY="97.0" prefHeight="20.0" prefWidth="169.0" text="Username:">
+      <TextField fx:id="newPass" layoutX="299.0" layoutY="133.0" prefHeight="32.0" prefWidth="262.0" />
+      <TextField fx:id="verifyPass" layoutX="299.0" layoutY="237.0" prefHeight="32.0" prefWidth="262.0" />
+      <Label layoutX="299.0" layoutY="106.0" prefHeight="20.0" prefWidth="169.0" text="New password:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="299.0" layoutY="210.0" text="Code from email:">
+      <Label layoutX="299.0" layoutY="210.0" text="Verify password:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="randomNR" layoutX="647.0" layoutY="54.0" />
       <Button layoutX="218.0" layoutY="315.0" mnemonicParsing="false" onAction="#signOutButton" prefHeight="39.0" prefWidth="175.0" text="Cancel">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="resetPass" layoutX="448.0" layoutY="315.0" mnemonicParsing="false" onAction="#newPassButton" prefHeight="39.0" prefWidth="175.0" text="Reset password">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="emailButton" layoutX="448.0" layoutY="315.0" mnemonicParsing="false" onAction="#emailButton" prefHeight="39.0" prefWidth="175.0" text="Send email">
+      <Button layoutX="448.0" layoutY="315.0" mnemonicParsing="false" onAction="#createNewPass" prefHeight="39.0" prefWidth="175.0" text="Create password">
          <font>
             <Font size="18.0" />
          </font>
