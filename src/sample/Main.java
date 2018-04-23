@@ -19,5 +19,5 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) throws SQLException { launch(args); DatabaseC.getInstance().input(); }
+    public static void main(String[] args) throws SQLException { launch(args); }
 }
