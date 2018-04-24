@@ -11,11 +11,6 @@ public class DatabaseC {
 
 
     // ------------------Password FXML----------------------
-    @FXML
-    private TextField ssnText;
-    @FXML
-    private TextField passwordText;
-
     private String SSN;
 
 
@@ -80,10 +75,17 @@ public class DatabaseC {
         ps.setString(1,pass);
         ps.setString(2, SSN);
         ps.executeUpdate();
-        System.out.println("funka");
-        System.out.println(SSN +"  "+pass);
     }
+    public String getEmail () throws SQLException {
+        PreparedStatement statement = c.prepareStatement("SELECT email from userlogin where SSN = '"+SSN+"'");
+        String username = "";
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()){
+            username = rs.getString(1);
+        }
 
+        return username;
+    }
 
 
 

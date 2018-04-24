@@ -27,7 +27,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="randomNR" layoutX="647.0" layoutY="54.0" />
       <Button layoutX="218.0" layoutY="315.0" mnemonicParsing="false" onAction="#signOutButton" prefHeight="39.0" prefWidth="175.0" text="Cancel">
          <font>
             <Font size="18.0" />
