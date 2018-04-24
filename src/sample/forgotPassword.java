@@ -71,7 +71,7 @@ public class forgotPassword implements Initializable {
             emailButton.setVisible(false);
             SecureRandom rand = new SecureRandom();
             randomNumber = rand.nextInt(9000)+1000;
-            
+
             String to = DatabaseC.getInstance().getEmail();
             String from = "humanresourceprojecthkr@gmail.com";
             String host = "localhost";
