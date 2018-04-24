@@ -248,7 +248,7 @@ CREATE TABLE `userlogin` (
 
 LOCK TABLES `userlogin` WRITE;
 /*!40000 ALTER TABLE `userlogin` DISABLE KEYS */;
-INSERT INTO `userlogin` VALUES (1111111111,1,'admin','Admin','Martin',' Månsson','hr-project@gmail.com','sjöcronas'),(1112223333,1,'martin','user','Martin','Månsson','mackan_4000@hotmail.com','lägervägen'),(1212123333,1,'shpat','user','Shpat','Krasniqi','shpat@live.se','tollarp?');
+INSERT INTO `userlogin` VALUES (1111111111,1,'admin','Admin','Martin',' Månsson','hr-project@gmail.com','sjöcronas'),(1111113333,1,'felix','user','Felix','Carlsson','felixcarlsson93@gmail.com','Sjöcronas'),(1112223333,1,'martin','user','Martin','Månsson','mackan_4000@hotmail.com','lägervägen'),(1212123333,1,'shpat','user','Shpat','Krasniqi','shpat@live.se','tollarp?');
 /*!40000 ALTER TABLE `userlogin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,4 +290,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-24 16:46:35
+-- Dump completed on 2018-04-24 16:49:26
