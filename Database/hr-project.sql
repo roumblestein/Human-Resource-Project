@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: hr-project
 -- ------------------------------------------------------
--- Server version	5.6.39-log
+-- Server version	5.6.27-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -67,6 +67,32 @@ CREATE TABLE `employment` (
 LOCK TABLES `employment` WRITE;
 /*!40000 ALTER TABLE `employment` DISABLE KEYS */;
 /*!40000 ALTER TABLE `employment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `performance history`
+--
+
+DROP TABLE IF EXISTS `performance history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `performance history` (
+  `userlogin_SSN` int(11) NOT NULL,
+  `idSkill` int(11) NOT NULL,
+  `Performance history` varchar(45) NOT NULL,
+  PRIMARY KEY (`userlogin_SSN`,`idSkill`),
+  KEY `fk_Performance history_userlogin_has_Skills1_idx` (`idSkill`),
+  CONSTRAINT `fk_Performance history_userlogin_has_Skills1` FOREIGN KEY (`idSkill`) REFERENCES `userlogin_has_skills` (`idSkill`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `performance history`
+--
+
+LOCK TABLES `performance history` WRITE;
+/*!40000 ALTER TABLE `performance history` DISABLE KEYS */;
+/*!40000 ALTER TABLE `performance history` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -222,7 +248,7 @@ CREATE TABLE `userlogin` (
 
 LOCK TABLES `userlogin` WRITE;
 /*!40000 ALTER TABLE `userlogin` DISABLE KEYS */;
-INSERT INTO `userlogin` VALUES (1111111111,1,'admin','Admin','Martin',' Månsson','hr-project@gmail.com','sjöcronas');
+INSERT INTO `userlogin` VALUES (1111111111,1,'admin','Admin','Martin',' Månsson','hr-project@gmail.com','sjöcronas'),(1112223333,1,'martin','user','Martin','Månsson','mackan_4000@hotmail.com','lägervägen'),(1212123333,1,'shpat','user','Shpat','Krasniqi','shpat@live.se','tollarp?');
 /*!40000 ALTER TABLE `userlogin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,4 +290,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-22 19:42:03
+-- Dump completed on 2018-04-24 16:46:35
