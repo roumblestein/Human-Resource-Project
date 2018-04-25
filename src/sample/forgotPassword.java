@@ -44,7 +44,8 @@ public class forgotPassword implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        SsnText.setDisable(true);
+        SsnText.setDisable(false);
     }
 
 
@@ -110,12 +111,8 @@ public class forgotPassword implements Initializable {
             stage.setScene(scene);
 
         }
-
-
-
-
-
     }
+
 
 
 
