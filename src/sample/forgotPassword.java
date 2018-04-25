@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.xml.internal.org.jvnet.mimepull.MIMEMessage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +12,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.mail.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.net.URL;
 import java.security.SecureRandom;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class forgotPassword implements Initializable {
@@ -40,14 +46,12 @@ public class forgotPassword implements Initializable {
 
 
     int randomNumber;
-    String SSN;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         SsnText.setDisable(true);
         SsnText.setDisable(false);
     }
-
 
     public void signOutButton (ActionEvent event) throws IOException {
 
@@ -61,27 +65,45 @@ public class forgotPassword implements Initializable {
         stage.setScene(scene);
     }
 
-    public void emailButton (ActionEvent event) throws IOException, SQLException {
-
+    public void emailButton (ActionEvent event) throws IOException, SQLException, MessagingException {
         boolean reset = DatabaseC.getInstance().CheckUsername(SsnText.getText());
-
         if (reset){
             SsnText.setEditable(false);
             emailButton.setVisible(false);
             SecureRandom rand = new SecureRandom();
             randomNumber = rand.nextInt(9000)+1000;
-            randomNR.setText(""+randomNumber);
+
+            String to = DatabaseC.getInstance().getEmail();
+            String from = "humanresourceprojecthkr@gmail.com";
+            String host = "localhost";
+            Properties properties = new Properties();
+            properties.put("mail.smtp.auth", "true");
+            properties.put("mail.smtp.starttls.enable", "true");
+            properties.put("mail.smtp.host", "smtp.gmail.com");
+            properties.put("mail.smtp.port", 587);
+            Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("humanresourceprojecthkr@gmail.com","hrproject");
+                }
+            });
+
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject("Reset Password");
+            message.setText("To Create a new password please input this code into the application!  "+randomNumber);
+            Transport.send(message);
+
             emailCode.setDisable(false);
             emailCode.setEditable(true);
 
         }else {
             //// error handling
         }
-
     }
 
     public void newPassButton (ActionEvent event) throws IOException {
-
         if (Integer.parseInt(emailCode.getText()) == randomNumber){
 
             Node node = (Node)event.getSource();
@@ -93,10 +115,8 @@ public class forgotPassword implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
         }
-
     }
     public void createNewPass (ActionEvent event) throws SQLException, IOException {
-
         if (newPass.getText().equals(verifyPass.getText())){
 
             DatabaseC.getInstance().newPassword(newPass.getText() );
@@ -109,14 +129,6 @@ public class forgotPassword implements Initializable {
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-
         }
     }
-
-
-
-
-
-
-
 }
