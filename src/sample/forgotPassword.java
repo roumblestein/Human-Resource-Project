@@ -33,9 +33,6 @@ public class forgotPassword implements Initializable {
     private TextField emailCode;
 
     @FXML
-    private TextField randomNR;
-
-    @FXML
     private TextField SsnText;
 
     @FXML
@@ -49,8 +46,7 @@ public class forgotPassword implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        SsnText.setDisable(true);
-        SsnText.setDisable(false);
+
     }
 
     public void signOutButton (ActionEvent event) throws IOException {

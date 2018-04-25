@@ -32,7 +32,7 @@ public class DatabaseC {
     }
 
 
-    Connection c = DriverManager.getConnection("jdbc:mysql://den1.mysql2.gear.host/hr-project?user=hrproject&password=Vb61C16K46_~");
+    Connection c = DriverManager.getConnection("jdbc:mysql://den1.mysql2.gear.host/hrproject?user=hrproject&password=Vb61C16K46_~");
 
     Statement st = c.createStatement();
 
@@ -75,12 +75,12 @@ public class DatabaseC {
     public boolean CheckUsername (String user) throws SQLException {
 
          PreparedStatement statement = c.prepareStatement("SELECT SSN from userlogin where SSN = '"+user+"'");
-        int username = 0;
+        String username = "";
             ResultSet rs = statement.executeQuery();
             while (rs.next()){
-                username = rs.getInt(1);
+                username = rs.getString(1);
             }
-            if (String.valueOf(username).equals(user) ){
+            if (username.equals(user) ){
                 SSN = user;
                 return true;
             }else {
