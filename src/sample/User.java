@@ -14,24 +14,24 @@ import java.util.ResourceBundle;
 
 public class User {
 
-    private int ssn;
-    private String password, access, name, lastName, email, address;
 
-    public User(int ssn, String password,String access, String name, String lastName, String email, String address){
+    private String ssn, password, name, lastName, email, address;
+
+    public User(String ssn, String name, String lastName, String email, String address){
         this.ssn = ssn;
-        this.password = password;
-        this.access = access;
+        //this.password = password;
+        //this.access = access;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.address = address;
     }
 
-    public int getSsn() {
+    public String getSsn() {
         return ssn;
     }
 
-    public void setSsn(int ssn) {
+    public void setSsn(String ssn) {
         this.ssn = ssn;
     }
 
@@ -43,13 +43,13 @@ public class User {
         this.password = password;
     }
 
-    public String getAccess() {
+   /* public String getAccess() {
         return access;
     }
 
     public void setAccess(String access) {
         this.access = access;
-    }
+    }*/
 
     public String getName() {
         return name;
