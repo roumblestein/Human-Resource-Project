@@ -15,9 +15,9 @@ import java.util.ResourceBundle;
 public class User {
 
 
-    private String ssn, password, name, lastName, email, address;
+    private String ssn, password, name, lastName, email, address, phone1;
 
-    public User(String ssn, String name, String lastName, String email, String address){
+    public User(String ssn, String name, String lastName, String email, String address, String phone1){
         this.ssn = ssn;
         //this.password = password;
         //this.access = access;
@@ -25,6 +25,11 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.address = address;
+        this.phone1 = phone1;
+    }
+
+    public String getPhone1() {
+        return phone1;
     }
 
     public String getSsn() {
