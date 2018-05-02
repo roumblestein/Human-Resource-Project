@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -29,6 +30,9 @@ public class Login implements Initializable {
     private PasswordField PasswordText;
 
     @FXML
+    private Button exitButton;
+
+    @FXML
     private Label ssnw;
 
 
@@ -38,33 +42,28 @@ public class Login implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
     }
 
     @FXML
-    public void loginButton(ActionEvent event) throws IOException {
-        /*String test = "111111-2222";
-        String[] tokens = test.split("-");
-
-       //private static final String USERNAME_REGEX = "^[0-9-]{11}$";
-        String Ssn = SsnText.getText();
-        String Password = PasswordText.getText();*/
-
-        if (SsnText.getLength() != 11) {
-            ssnw.setText("Write in this format YYMMDD-XXXX");
-
-        }else if (SsnText.getText().isEmpty() || PasswordText.getText().isEmpty()) {
+    public void loginButton(ActionEvent event) throws IOException, SQLException {
+        if (SsnText.getText().isEmpty() || PasswordText.getText().isEmpty()) {
             ssnw.setText("Enter details in empty fields!");
-        }else {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
+        } else if (DatabaseC.getInstance().CheckUsername(SsnText.getText())) {
 
-            FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("UserScreen.fxml"));
-            Parent root = FxmlLoader.load();
+            if (DatabaseC.getInstance().CheckPassword(PasswordText.getText())){
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+                FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("UserScreen.fxml"));
+                Parent root = FxmlLoader.load();
 
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+            }else if (!DatabaseC.getInstance().CheckPassword(PasswordText.getText())){
+                ssnw.setText("Password is incorrect!");
+            }
+        }else if (!DatabaseC.getInstance().CheckUsername(SsnText.getText())) {
+            ssnw.setText("Write in this format YYMMDD-XXXX");
         }
     }
 
@@ -81,9 +80,11 @@ public class Login implements Initializable {
 
     }    @FXML
     private void exitButton(ActionEvent event) {
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Exit");
-        alert.setHeaderText("Look, a Confirmation Dialog");
+
+        alert.setHeaderText("Do you want to exit ?");
         alert.setContentText("Do you want to exit ?");
 
         Optional<ButtonType> result = alert.showAndWait();
