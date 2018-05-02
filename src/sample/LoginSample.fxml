@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Login">
+   <children>
+      <ImageView fitHeight="410.0" fitWidth="824.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Skärmklipp.PNG" />
+         </image>
+      </ImageView>
+      <Button layoutX="272.0" layoutY="293.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="0.0" prefWidth="122.0" text="Login">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="SsnText" layoutX="118.0" layoutY="154.0" prefHeight="25.0" prefWidth="277.0" promptText="Social security number">
+         <tooltip>
+            <Tooltip fx:id="ssnTooltip" text="Use your ten-digit social security number" />
+         </tooltip>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" />
+         </effect></TextField>
+      <Label layoutX="118.0" layoutY="98.0" prefHeight="27.0" prefWidth="277.0" text="Social security number:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="117.0" layoutY="196.0" prefHeight="29.0" prefWidth="267.0" text="Password:">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <tooltip>
+            <Tooltip text="Empty Tooltip" />
+         </tooltip>
+      </Label>
+      <Button layoutX="350.0" layoutY="363.0" mnemonicParsing="false" onAction="#forgotButton" prefHeight="39.0" prefWidth="175.0" text="Forgot Password?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <PasswordField fx:id="PasswordText" layoutX="118.0" layoutY="238.0" prefHeight="25.0" prefWidth="277.0" promptText="Password">
+         <tooltip>
+            <Tooltip text="Your password must be at least 8 characters in length" />
+         </tooltip>
+         <effect>
+            <DropShadow />
+         </effect>
+      </PasswordField>
+      <Label fx:id="ssnw" layoutX="111.0" layoutY="334.0" prefHeight="26.0" prefWidth="277.0" textFill="RED" underline="true" wrapText="true" />
+      <ImageView fitHeight="100.0" fitWidth="73.0" layoutX="25.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/user.png" />
+         </image>
+      </ImageView>
+      <CheckBox layoutX="117.0" layoutY="291.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="122.0" text="Remember me" />
+      <Hyperlink layoutX="25.0" layoutY="382.0" onAction="#forgotButton" text="Forgot Password" underline="true" />
+      <ImageView fx:id="exitButton" fitHeight="39.0" fitWidth="122.0" layoutX="750.0" layoutY="14.0" onMouseClicked="#exitButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Exit.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
