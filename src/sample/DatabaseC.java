@@ -49,23 +49,33 @@ public class DatabaseC {
 
     //----------------------------USER METHODS-----------------------------
 
-    String ssn;
-    String firstName;
-    String lastName;
-    String email;
-    String adress;
+    String ssn, firstName, lastName, email, adress, phone1;
 
     public User getPersonalInformation(String userlogin) throws SQLException{
-        PreparedStatement statement = c.prepareStatement("Select * FROM userlogin where SSN = '"+userlogin+"'");
+        PreparedStatement statement = c.prepareStatement("Select * FROM userlogin, `personal phone` where SSN = '"+userlogin+"' AND SSN = userlogin_SSN");
         ResultSet rs = statement.executeQuery();
         while(rs.next()){
-            ssn = rs.getString(1);
-            firstName = rs.getString(5);
-            lastName = rs.getString(6);
-            email = rs.getString(7);
-            adress = rs.getString(8);
+            ssn = rs.getString("SSN");
+            firstName = rs.getString("Name");
+            lastName = rs.getString("Lastname");
+            email = rs.getString("Email");
+            adress = rs.getString("Adress");
+            phone1 = rs.getString("PhoneNr");
         }
-        return new User(ssn, firstName, lastName, email, adress);
+        return new User(ssn, firstName, lastName, email, adress, phone1);
+    }
+
+    public void updateInformation(String ssn, String firstName, String lastName, String email, String adress, String phone1) throws SQLException{
+        PreparedStatement a = c.prepareStatement("UPDATE userlogin, `personal phone` SET Name = ?, " +
+                "Lastname = ?, Email = ?, PhoneNr = ?, Adress = ? WHERE SSN = '"+ssn+"' AND SSN = userlogin_SSN");
+        a.setString(1, firstName);
+        a.setString(2, lastName);
+        a.setString(3, email);
+        a.setString(4, phone1);
+        a.setString(5, adress);
+
+        a.executeUpdate();
+        a.close();
     }
 
 
