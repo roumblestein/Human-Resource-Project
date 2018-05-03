@@ -56,12 +56,11 @@ public class Login implements Initializable {
 
     public void forgotButton(ActionEvent event) throws IOException {
 
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("forgotPass.fxml"));
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = new Stage();
+        Parent root =FXMLLoader.load(getClass().getResource("forgotPass.fxml"));
+        stage.setTitle("New password");
+        stage.setScene( new Scene(root));
+        stage.show();
 
     }    @FXML
     private void exitButton(ActionEvent event) {

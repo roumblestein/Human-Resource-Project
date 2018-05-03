@@ -1,6 +1,5 @@
 package sample;
 
-import com.sun.xml.internal.org.jvnet.mimepull.MIMEMessage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +8,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
@@ -25,24 +23,20 @@ import java.util.ResourceBundle;
 
 public class forgotPassword implements Initializable {
 
-
     @FXML
     private Button emailButton;
-
     @FXML
     private TextField emailCode;
-
     @FXML
     private TextField SsnText;
-
     @FXML
     private TextField newPass;
-
     @FXML
     private TextField verifyPass;
+    @FXML
+    private Label warningForgetP;
 
-
-    int randomNumber;
+    private int randomNumber;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -60,7 +54,6 @@ public class forgotPassword implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }
-
     public void emailButton (ActionEvent event) throws IOException, SQLException, MessagingException {
         boolean reset = DatabaseC.getInstance().CheckUsername(SsnText.getText());
         if (reset){
@@ -71,7 +64,6 @@ public class forgotPassword implements Initializable {
 
             String to = DatabaseC.getInstance().getEmail();
             String from = "humanresourceprojecthkr@gmail.com";
-            String host = "localhost";
             Properties properties = new Properties();
             properties.put("mail.smtp.auth", "true");
             properties.put("mail.smtp.starttls.enable", "true");
@@ -96,33 +88,32 @@ public class forgotPassword implements Initializable {
 
         }else {
             //// error handling
+            if (SsnText.getText().isEmpty() || emailCode.getText().isEmpty()) {
+                warningForgetP.setText("Enter details in empty fields!");
+
+            }
         }
     }
 
     public void newPassButton (ActionEvent event) throws IOException {
         if (Integer.parseInt(emailCode.getText()) == randomNumber){
-
             Node node = (Node)event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
-
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NewPass.fxml"));
             Parent root = fxmlLoader.load();
-
             Scene scene = new Scene(root);
             stage.setScene(scene);
+
+
         }
     }
     public void createNewPass (ActionEvent event) throws SQLException, IOException {
         if (newPass.getText().equals(verifyPass.getText())){
-
             DatabaseC.getInstance().newPassword(newPass.getText() );
-
             Node node = (Node)event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
-
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginSample.fxml"));
             Parent root = fxmlLoader.load();
-
             Scene scene = new Scene(root);
             stage.setScene(scene);
         }
