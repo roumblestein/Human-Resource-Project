@@ -83,6 +83,21 @@ public class UserScreenController implements Initializable {
 
     }
 
+    public void timeStampButton(ActionEvent event) throws IOException {
+
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TimeStamp.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+
+
+
+    }
+
     @FXML private void update() throws SQLException{
         DatabaseC.getInstance().updateInformation(currentSSN, firstNameTextField.getText(),
                 lastNameTextField.getText(), emailTextFiled.getText(),addressTextField.getText(), phoneOneTextField.getText());
