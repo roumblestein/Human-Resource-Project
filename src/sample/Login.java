@@ -1,7 +1,7 @@
 package sample;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,18 +9,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class Login implements Initializable {
 
@@ -28,16 +23,8 @@ public class Login implements Initializable {
     private TextField SsnText;
     @FXML
     private PasswordField PasswordText;
-
-    @FXML
-    private Button exitButton;
-
     @FXML
     private Label ssnw;
-
-
-
-    //Scanner input = new Scanner(System.in);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -71,10 +58,8 @@ public class Login implements Initializable {
 
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("forgotPass.fxml"));
         Parent root = fxmlLoader.load();
-
         Scene scene = new Scene(root);
         stage.setScene(scene);
 
@@ -82,10 +67,11 @@ public class Login implements Initializable {
     private void exitButton(ActionEvent event) {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Yes!");
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("No!");
         alert.setTitle("Exit");
-
         alert.setHeaderText("Do you want to exit ?");
-        alert.setContentText("Do you want to exit ?");
+        alert.setContentText(" ");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
