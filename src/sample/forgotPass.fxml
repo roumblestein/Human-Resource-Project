@@ -8,40 +8,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.forgotPassword">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.forgotPassword">
    <children>
-      <ImageView fitHeight="391.0" fitWidth="650.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="300.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/Skärmklipp.PNG" />
          </image>
       </ImageView>
-      <Button fx:id="resetPass" layoutX="206.0" layoutY="283.0" mnemonicParsing="false" onAction="#newPassButton" prefHeight="39.0" prefWidth="154.0" text="Reset password">
+      <Button fx:id="resetPass" layoutX="105.0" layoutY="202.0" mnemonicParsing="false" onAction="#newPassButton" prefHeight="39.0" prefWidth="154.0" text="Reset password">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="SsnText" layoutX="206.0" layoutY="134.0" prefHeight="32.0" prefWidth="262.0" promptText="Enter your username or email address" />
-      <TextField fx:id="emailCode" disable="true" editable="false" layoutX="206.0" layoutY="215.0" prefHeight="32.0" prefWidth="262.0" promptText="XXXX" />
-      <Label layoutX="206.0" layoutY="107.0" prefHeight="0.0" prefWidth="277.0" text="Username or Email address">
+      <TextField fx:id="SsnText" layoutX="110.0" layoutY="66.0" prefHeight="32.0" prefWidth="262.0" promptText="Enter your username or email address" />
+      <TextField fx:id="emailCode" disable="true" editable="false" layoutX="105.0" layoutY="136.0" prefHeight="32.0" prefWidth="262.0" promptText="XXXX" />
+      <Label layoutX="119.0" layoutY="39.0" prefHeight="0.0" prefWidth="277.0" text="Username or Email address">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="257.0" layoutY="188.0" text="Code from email:">
+      <Label layoutX="157.0" layoutY="109.0" text="Code from email:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="384.0" layoutY="283.0" mnemonicParsing="false" onAction="#signOutButton" prefHeight="39.0" prefWidth="84.0" text="Cancel">
+      <Button layoutX="275.0" layoutY="202.0" mnemonicParsing="false" onAction="#signOutButton" prefHeight="39.0" prefWidth="84.0" text="Cancel">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="emailButton" layoutX="206.0" layoutY="283.0" mnemonicParsing="false" onAction="#emailButton" prefHeight="39.0" prefWidth="154.0" text="Send email">
+      <Button fx:id="emailButton" layoutX="105.0" layoutY="202.0" mnemonicParsing="false" onAction="#emailButton" prefHeight="39.0" prefWidth="154.0" text="Send email">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="warningForgetP" layoutX="207.0" layoutY="249.0" prefHeight="27.0" prefWidth="262.0" />
+      <Label fx:id="warningForgetP" layoutX="105.0" layoutY="162.0" prefHeight="27.0" prefWidth="262.0" />
    </children>
 </AnchorPane>

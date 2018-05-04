@@ -55,45 +55,50 @@ public class forgotPassword implements Initializable {
         stage.setScene(scene);
     }
     public void emailButton (ActionEvent event) throws IOException, SQLException, MessagingException {
-        boolean reset = DatabaseC.getInstance().CheckUsername(SsnText.getText());
-        if (reset){
-            SsnText.setEditable(false);
-            emailButton.setVisible(false);
-            SecureRandom rand = new SecureRandom();
-            randomNumber = rand.nextInt(9000)+1000;
+        if (SsnText.getText().isEmpty() || emailCode.getText().isEmpty()) {
+            warningForgetP.setText("Enter details in empty fields!");
+        }
+            boolean reset = DatabaseC.getInstance().CheckUsername(SsnText.getText());
+            if (reset) {
+                SsnText.setEditable(false);
+                emailButton.setVisible(false);
+                SecureRandom rand = new SecureRandom();
+                randomNumber = rand.nextInt(9000) + 1000;
 
-            String to = DatabaseC.getInstance().getEmail();
-            String from = "humanresourceprojecthkr@gmail.com";
-            Properties properties = new Properties();
-            properties.put("mail.smtp.auth", "true");
-            properties.put("mail.smtp.starttls.enable", "true");
-            properties.put("mail.smtp.host", "smtp.gmail.com");
-            properties.put("mail.smtp.port", 587);
-            Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
-                @Override
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("humanresourceprojecthkr@gmail.com","hrproject");
-                }
-            });
+                String to = DatabaseC.getInstance().getEmail();
+                String from = "humanresourceprojecthkr@gmail.com";
+                Properties properties = new Properties();
+                properties.put("mail.smtp.auth", "true");
+                properties.put("mail.smtp.starttls.enable", "true");
+                properties.put("mail.smtp.host", "smtp.gmail.com");
+                properties.put("mail.smtp.port", 587);
+                Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("humanresourceprojecthkr@gmail.com", "hrproject");
+                    }
+                });
 
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(from));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject("Reset Password");
-            message.setText("To Create a new password please input this code into the application!  "+randomNumber);
-            Transport.send(message);
+                MimeMessage message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(from));
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+                message.setSubject("Reset Password");
+                message.setText("To Create a new password please input this code into the application!  " + randomNumber);
+                Transport.send(message);
 
-            emailCode.setDisable(false);
-            emailCode.setEditable(true);
-
-        }else {
-            //// error handling
-            if (SsnText.getText().isEmpty() || emailCode.getText().isEmpty()) {
-                warningForgetP.setText("Enter details in empty fields!");
-
+                emailCode.setDisable(false);
+                emailCode.setEditable(true);
+            } else {
+                //// error handling
+            /*if (SsnText.getText().isEmpty() || emailCode.getText().isEmpty()) {
+            warningForgetP.setText("Enter details in empty fields!");
+            if (!SsnText.getText().equals(8)) {
+                warningForgetP.setText("Use 8 characters ");*/
             }
         }
-    }
+
+
+
 
     public void newPassButton (ActionEvent event) throws IOException {
         if (Integer.parseInt(emailCode.getText()) == randomNumber){
