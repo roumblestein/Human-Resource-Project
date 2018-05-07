@@ -131,4 +131,91 @@ public class DatabaseC {
 
 
     }
+
+
+    //--------------------------------TIMESTAMP--------------------------------
+
+
+    public void workingExtra (String date) throws SQLException {
+        PreparedStatement statement = c.prepareStatement("SELECT `Working day`  from timestamp where userlogin_SSN = '"+SSN+ "' AND `Working day` = '"+date+"'");
+        ResultSet rs = statement.executeQuery();
+        String dateCheck =  "";
+
+        while (rs.next()){
+            dateCheck = rs.getString(1);
+        }
+        if (dateCheck.isEmpty()){
+            PreparedStatement st = c.prepareStatement("INSERT INTO timestamp (userlogin_SSN, Start, Stop, `Working day`, checkedIn, workDayOver) VALUES ('"+SSN+"',null,null,'"+date+"', 0,0)");
+            st.execute();
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+    public TimeStamp getWorkTimes (String date) throws SQLException {
+
+        PreparedStatement statement = c.prepareStatement("SELECT Start, stop, checkedIn  from timestamp where userlogin_SSN = '"+SSN+ "' AND `Working day` = '"+date+"'");
+        ResultSet rs = statement.executeQuery();
+        String start = "";
+        String stop = "";
+        int isChecked =  0;
+
+        while (rs.next()) {
+            start = rs.getString(1);
+            stop = rs.getString(2);
+            isChecked = rs.getInt(3);
+        }
+        TimeStamp timeStamp = new TimeStamp(start, stop, date, isChecked);
+
+        return timeStamp;
+    }
+    public void checkIn (String start, String date) throws SQLException {
+        PreparedStatement statement = c.prepareStatement("UPDATE timestamp SET start = ?, checkedIn = ? WHERE userlogin_SSN ='"+SSN+"' AND `Working day` = '"+date+"'");
+
+        statement.setString(1, start);
+        statement.setInt(2, 1);
+        statement.executeUpdate();
+
+
+
+    }
+    public void checkOut (String stop, String date) throws SQLException {
+        PreparedStatement statement = c.prepareStatement("UPDATE timestamp SET stop = ?, workDayOver = ? WHERE userlogin_SSN ='"+SSN+"' AND `Working day` = '"+date+"'");
+
+        statement.setString(1, stop);
+        statement.setInt(2, 1);
+        statement.executeUpdate();
+    }
+    public boolean checkedIn (String date) throws SQLException {
+        PreparedStatement statement = c.prepareStatement("SELECT checkedIn from timestamp where userlogin_SSN = '"+SSN+ "' AND `Working day` = '"+date+"'");
+        int b = 0;
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()){
+            b = rs.getInt(1);
+        }
+        if (b == 1){
+            return true;
+        }else
+            return false;
+    }public boolean workDayOver (String date) throws SQLException {
+        PreparedStatement statement = c.prepareStatement("SELECT workDayOver from timestamp where userlogin_SSN = '"+SSN+ "' AND `Working day` = '"+date+"'");
+        int b = 0;
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()){
+            b = rs.getInt(1);
+        }
+        if (b == 1){
+            return true;
+        }else
+            return false;
+    }
+
 }
