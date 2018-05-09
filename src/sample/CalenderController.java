@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -31,6 +33,9 @@ public class CalenderController implements Initializable {
     private Text day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day15, day16, day17, day18, day19, day20, day21, day22, day23, day24, day25, day26, day27, day28, day29, day30, day31, day32, day33, day34, day35;
 
     @FXML
+    private Rectangle box1,box2,box3,box4,box5,box6,box7,box8,box9,box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,box20,box21,box22,box23,box24,box25,box26,box27,box28,box29,box30,box31,box32,box33,box34,box35;
+
+    @FXML
     private Label currentMonth;
 
     @FXML
@@ -39,6 +44,7 @@ public class CalenderController implements Initializable {
     @FXML
     private Button nextMonth;
 
+    private ArrayList<Rectangle> boxArray = new ArrayList<>();
     private ArrayList<Text> textArray = new ArrayList<>();
     private int month;
     private int whichDay;
@@ -59,24 +65,8 @@ public class CalenderController implements Initializable {
         lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         dayLastMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         daysInMonth();
-        previousDaycountdown = whichDay;
-        System.out.println(dayLastMonth + " "+ whichDay);
-        for (int i = 0 ; i < textArray.size(); i++){
-            System.out.println(dayNextMonth);
-            if (i < whichDay){
-                int pre = dayLastMonth-previousDaycountdown+1;
-                System.out.println(pre +" " + dayLastMonth +" "+ previousDaycountdown);
-                textArray.get(i).setText(""+pre);
-                previousDaycountdown--;
-            }else if (day>lastDay){
-                textArray.get(i).setText(""+dayNextMonth);
-                dayNextMonth++;
-                System.out.println(dayNextMonth);
-            }else{
-                textArray.get(i).setText(""+(day));
-                day++;
-            }
-        }
+        changeMonth();
+
 
     }
 
@@ -186,6 +176,46 @@ public class CalenderController implements Initializable {
         textArray.add(day33);
         textArray.add(day34);
         textArray.add(day35);
+        boxArray.add(box1);
+        boxArray.add(box2);
+        boxArray.add(box3);
+        boxArray.add(box4);
+        boxArray.add(box5);
+        boxArray.add(box6);
+        boxArray.add(box7);
+        boxArray.add(box8);
+        boxArray.add(box9);
+        boxArray.add(box10);
+        boxArray.add(box11);
+        boxArray.add(box12);
+        boxArray.add(box13);
+        boxArray.add(box14);
+        boxArray.add(box15);
+        boxArray.add(box16);
+        boxArray.add(box17);
+        boxArray.add(box18);
+        boxArray.add(box19);
+        boxArray.add(box20);
+        boxArray.add(box21);
+        boxArray.add(box22);
+        boxArray.add(box23);
+        boxArray.add(box24);
+        boxArray.add(box25);
+        boxArray.add(box26);
+        boxArray.add(box27);
+        boxArray.add(box28);
+        boxArray.add(box29);
+        boxArray.add(box30);
+        boxArray.add(box31);
+        boxArray.add(box32);
+        boxArray.add(box33);
+        boxArray.add(box34);
+        boxArray.add(box35);
+
+
+
+
+
     }
     public void daysInMonth (){
         if (month == 0){
@@ -248,12 +278,15 @@ public class CalenderController implements Initializable {
             if (i < whichDay){
                 int pre = dayLastMonth-previousDaycountdown+1;
                 textArray.get(i).setText(""+pre);
+                boxArray.get(i).setFill(Paint.valueOf("#d0d0d0"));
                 previousDaycountdown--;
             }else if (day>lastDay){
                 textArray.get(i).setText(""+dayNextMonth);
+                boxArray.get(i).setFill(Paint.valueOf("#d0d0d0"));
                 dayNextMonth++;
             }else{
                 textArray.get(i).setText(""+(day));
+                boxArray.get(i).setFill(Paint.valueOf("#ffffff"));
                 day++;
             }
         }
