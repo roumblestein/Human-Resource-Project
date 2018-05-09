@@ -94,6 +94,17 @@ public class UserScreenController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
 
+    }public void calenderButton(ActionEvent event) throws IOException {
+
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Calender.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+
 
 
     }

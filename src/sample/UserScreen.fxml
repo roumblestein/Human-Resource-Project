@@ -113,11 +113,17 @@
         </tabs>
       </TabPane>
       <Button fx:id="logOut" layoutX="14.0" layoutY="379.0" mnemonicParsing="false" onAction="#SignOut" prefHeight="34.0" prefWidth="89.0" text="Sign out" />
-      <ImageView fitHeight="81.0" fitWidth="80.0" layoutX="19.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="19.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/TimeStamp.png" />
          </image>
       </ImageView>
       <Button fx:id="timeButton" layoutX="19.0" layoutY="229.0" mnemonicParsing="false" onAction="#timeStampButton" opacity="0.0" prefHeight="80.0" prefWidth="80.0" text="Button" />
+      <ImageView fitHeight="80.0" fitWidth="63.0" layoutX="27.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/calendar-icon-big-e1bda272669953ade8c0bcd99562c81682539e17b0c681625764375feaff927d.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="calenderButton" layoutX="19.0" layoutY="139.0" mnemonicParsing="false" onAction="#calenderButton" opacity="0.0" prefHeight="80.0" prefWidth="80.0" text="Button" />
    </children>
 </AnchorPane>

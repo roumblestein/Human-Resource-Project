@@ -28,7 +28,7 @@
             <Font size="50.0" />
          </font>
       </Label>
-      <Button fx:id="logOut" layoutX="14.0" layoutY="362.0" mnemonicParsing="false" onAction="#signOutButton" opacity="0.99" prefHeight="34.0" prefWidth="89.0" text="Sign out" />
+      <Button fx:id="logOut" layoutX="14.0" layoutY="362.0" mnemonicParsing="false" onAction="#signOutButton" opacity="0.99" prefHeight="34.0" prefWidth="89.0" text="&lt;&lt; back" />
       <TextField fx:id="checkIn" alignment="CENTER" editable="false" layoutX="166.0" layoutY="145.0" prefHeight="39.0" prefWidth="215.0">
          <font>
             <Font size="20.0" />
