@@ -98,6 +98,7 @@ public class DatabaseC {
 
     public void newPassword(String pass) throws SQLException {
         PreparedStatement ps = c.prepareStatement("UPDATE userlogin SET Password = ? WHERE SSN = ?");
+
         ps.setString(1, pass);
         ps.setString(2, SSN);
         ps.executeUpdate();
