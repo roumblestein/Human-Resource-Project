@@ -42,6 +42,9 @@ public class Login implements Initializable {
     private String rememberUser;
 
 
+    public static String currentUserSsn = "";
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -66,19 +69,28 @@ public class Login implements Initializable {
 
                 if (DatabaseC.getInstance().CheckPassword(PasswordText.getText())) {
 
-                    Node node = (Node) event.getSource();
-                    Stage stage = (Stage) node.getScene().getWindow();
-                    FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("UserScreen.fxml"));
-                    Parent root = FxmlLoader.load();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
+                    if(!DatabaseC.getInstance().checkAccess(SsnText.getText())){
+                        currentUserSsn = SsnText.getText();
+                        Node node = (Node) event.getSource();
+                        Stage stage = (Stage) node.getScene().getWindow();
 
+                        FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("UserScreen.fxml"));
+                        Parent root = FxmlLoader.load();
 
-                    Alert dialog = new Alert(Alert.AlertType.INFORMATION);
-                    dialog.setTitle("INFORMATION");
-                    dialog.setHeaderText("Don't forget the Time Stamp");
-                    dialog.setContentText("Always use the Time Stamp when you start working !");
-                    dialog.showAndWait();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+
+                    }else if(DatabaseC.getInstance().checkAccess(SsnText.getText())){
+                        currentUserSsn = SsnText.getText();
+                        Node node = (Node) event.getSource();
+                        Stage stage = (Stage) node.getScene().getWindow();
+
+                        FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("AdminScreen.fxml"));
+                        Parent root = FxmlLoader.load();
+
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                    }
 
                 } else if (!DatabaseC.getInstance().CheckPassword(PasswordText.getText())) {
                     ssnw.setText("Password is incorrect!");
@@ -167,4 +179,5 @@ public class Login implements Initializable {
             bufferedReader.close();
         }
     }
+
 }

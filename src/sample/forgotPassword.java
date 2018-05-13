@@ -97,8 +97,7 @@ public class forgotPassword implements Initializable {
             //// error handling
             /*if (SsnText.getText().isEmpty() || emailCode.getText().isEmpty()) {
             warningForgetP.setText("Enter details in empty fields!");
-            if (!SsnText.getText().equals(8)) {
-                warningForgetP.setText("Use 8 characters ");*/
+            */
         }
     }
 
