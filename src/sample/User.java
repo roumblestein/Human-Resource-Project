@@ -14,30 +14,27 @@ import java.util.ResourceBundle;
 
 public class User {
 
+    //Personal information variables
+    private String ssn, name, lastName, email, address, phone1, idDepartment, password, access;
 
-    private String ssn, password, name, lastName, email, address, phone1;
-
-    public User(String ssn, String name, String lastName, String email, String address, String phone1){
+    public User(String ssn, String name, String lastName, String email, String address, String phone1,String idDepartment,String password,String access) {
         this.ssn = ssn;
-        //this.password = password;
-        //this.access = access;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.address = address;
         this.phone1 = phone1;
+        this.idDepartment = idDepartment;
+        this.password = password;
+        this.access = access;
     }
 
-    public String getPhone1() {
-        return phone1;
+    public String getAccess() {
+        return access;
     }
 
-    public String getSsn() {
-        return ssn;
-    }
-
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
+    public void setAccess(String access) {
+        this.access = access;
     }
 
     public String getPassword() {
@@ -48,13 +45,21 @@ public class User {
         this.password = password;
     }
 
-   /* public String getAccess() {
-        return access;
+    public String getIdDepartment() {
+        return idDepartment;
     }
 
-    public void setAccess(String access) {
-        this.access = access;
-    }*/
+    public void setIdDepartment(String idDepartment) {
+        this.idDepartment = idDepartment;
+    }
+
+    public String getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
 
     public String getName() {
         return name;
@@ -88,14 +93,11 @@ public class User {
         this.address = address;
     }
 
+    public String getPhone1() {
+        return phone1;
+    }
 
-
-
-
-
-
-
-
-
-
+    public void setPhone1(String phone1) {
+        this.phone1 = phone1;
+    }
 }

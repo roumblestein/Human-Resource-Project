@@ -3,7 +3,9 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+import javax.xml.transform.Result;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DatabaseC {
     private static DatabaseC instance = null;
@@ -44,12 +46,11 @@ public class DatabaseC {
 
     //----------------------------USER METHODS-----------------------------
 
-    String ssn, firstName, lastName, email, adress, phone1;
-
+    String ssn, firstName, lastName, email, adress, phone1, idDepartment, password, access;
 
     public User getPersonalInformation(String userlogin) throws SQLException{
-        PreparedStatement statement = c.prepareStatement("Select * FROM userlogin, `personal phone` where SSN = '"+userlogin+"' AND SSN = userlogin_SSN");
-        ResultSet rs = statement.executeQuery();
+        PreparedStatement personalInformation = c.prepareStatement("Select * FROM userlogin, `personal phone` where SSN = '"+userlogin+"' AND SSN = userlogin_SSN");
+        ResultSet rs = personalInformation.executeQuery();
         while(rs.next()){
             ssn = rs.getString("SSN");
             firstName = rs.getString("Name");
@@ -57,9 +58,51 @@ public class DatabaseC {
             email = rs.getString("Email");
             adress = rs.getString("Adress");
             phone1 = rs.getString("PhoneNr");
-
+            idDepartment = rs.getString("idDepartment");
+            password = rs.getString("Password");
+            access = rs.getString("Access");
         }
-        return new User(ssn, firstName, lastName, email, adress, phone1);
+        return new User(ssn, firstName, lastName, email, adress, phone1, idDepartment, password,access);
+    }
+
+    String salary, employment, status, employmentDate, lastEmploymentDate;
+    public Employment getEmploymentInformation(String userlogin) throws SQLException{
+        PreparedStatement employmentInformation = c.prepareStatement("Select * from employment where employment.userlogin_SSN = '"+userlogin+"'");
+        ResultSet bs = employmentInformation.executeQuery();
+        while(bs.next()){
+            salary = bs.getString("Salary");
+            employment = bs.getString("Employment");
+            status = bs.getString("Status");
+            employmentDate = bs.getString("EmploymentDate");
+            lastEmploymentDate = bs.getString("LastEmploymentDate");
+        }
+        return new Employment(salary, employment, status, employmentDate, lastEmploymentDate);
+    }
+
+    String skillCategory, skill, level, experience, performance;
+    public Skills getSkills(String userlogin) throws SQLException{
+
+        PreparedStatement employmentInformation = c.prepareStatement("Select Skillcategory, Skill, Level, Experience, Performance from skills, userlogin_has_skills where userlogin_has_skills.userlogin_SSN = '"+userlogin+"'" +
+                "and Skills.idSkill = userlogin_has_skills.idSkill");
+        ResultSet bs = employmentInformation.executeQuery();
+        while(bs.next()){
+            skillCategory = bs.getString("Skillcategory");
+            skill = bs.getString("Skill");
+            level = bs.getString("Level");
+            experience = bs.getString("Experience");
+            performance = bs.getString("Performance");
+        }
+        return new Skills(skillCategory,skill,level,experience,performance);
+    }
+
+    public ArrayList<Contacts> getContacts() throws SQLException{
+        ArrayList<Contacts> contacts = new ArrayList<>();
+        PreparedStatement users = c.prepareStatement("Select Name, Lastname, Email, PhoneNr from userlogin, `personal phone` where userlogin_SSN = SSN");
+        ResultSet rs = users.executeQuery();
+        while(rs.next()){
+            contacts.add(new Contacts(rs.getString("Name"), rs.getString("Lastname"), rs.getString("Email"), rs.getString("PhoneNr")));
+        }
+        return contacts;
     }
 
     public void updateInformation(String ssn, String firstName, String lastName, String email, String adress, String phone1) throws SQLException{
@@ -74,6 +117,63 @@ public class DatabaseC {
         a.executeUpdate();
         a.close();
     }
+
+    //--------------------------ADMIN METHODS-------------------------------
+
+    public void addEmployee(User user, Employment employment, Skills skills) throws SQLException{
+
+        PreparedStatement addPersonalInformation = c.prepareStatement("Insert into userlogin" +
+                "(SSN, idDepartment, Password, Access, Name, Lastname, Email, Adress) values" +
+                "(?,?,?,?,?,?,?,?)");
+        addPersonalInformation.setString(1,user.getSsn());
+        addPersonalInformation.setString(2,user.getIdDepartment());
+        addPersonalInformation.setString(3,user.getPassword());
+        addPersonalInformation.setString(4,user.getAccess());
+        addPersonalInformation.setString(5,user.getName());
+        addPersonalInformation.setString(6,user.getLastName());
+        addPersonalInformation.setString(7,user.getEmail());
+        addPersonalInformation.setString(8,user.getAddress());
+
+        addPersonalInformation.executeUpdate();
+        addPersonalInformation.close();
+
+        PreparedStatement addEmploymentInformation = c.prepareStatement("Insert into employment" +
+                "(userlogin_SSN, Salary, Employment, Status, EmploymentDate, LastEmploymentDate) values" +
+                "(?,?,?,?,?,?)");
+        addEmploymentInformation.setString(1, user.getSsn());
+        addEmploymentInformation.setString(2, employment.getSalary());
+        addEmploymentInformation.setString(3, employment.getEmployment());
+        addEmploymentInformation.setString(4, employment.getStatus());
+        addEmploymentInformation.setString(5, employment.getEmploymentDate());
+        addEmploymentInformation.setString(6, employment.getLastEmploymentDate());
+
+        addEmploymentInformation.executeUpdate();
+        addEmploymentInformation.close();
+
+        PreparedStatement addSkillsInformation = c.prepareStatement("Insert into userlogin_has_skills" +
+                "(userlogin_SSN, idSkill, Experience, Performance)values" +
+                "(?,?,?,?)");
+        addSkillsInformation.setString(1, user.getSsn());
+        addSkillsInformation.setString(2, skills.getSkillCategory());
+        addSkillsInformation.setString(3, skills.getLevel());
+        addSkillsInformation.setString(4, skills.getPerformance());
+
+        addSkillsInformation.executeUpdate();
+        addSkillsInformation.close();
+
+
+        PreparedStatement addPhoneInformation = c.prepareStatement("Insert into `personal phone`" +
+                "(userlogin_SSN, PhoneNr) values (?,?)");
+
+        addPhoneInformation.setString(1, user.getSsn());
+        addPhoneInformation.setString(2, user.getPhone1());
+
+        addPhoneInformation.executeUpdate();
+        addPersonalInformation.close();
+    }
+
+
+
 
 
     //-------------------------PASSWORD METHODS-----------------------------
@@ -93,7 +193,20 @@ public class DatabaseC {
         } else {
             return false;
         }
+    }
 
+    public boolean checkAccess(String user) throws SQLException{
+        PreparedStatement statement = c.prepareStatement("Select SSN, Access from userlogin where SSN = '"+user+"'");
+        ResultSet rs = statement.executeQuery();
+        String access = "";
+        while(rs.next()){
+            access = rs.getString("Access");
+        }
+        if(access.equals("Admin")){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public void newPassword(String pass) throws SQLException {
@@ -151,13 +264,6 @@ public class DatabaseC {
 
 
     }
-
-
-
-
-
-
-
 
 
     public TimeStamp getWorkTimes (String date) throws SQLException {

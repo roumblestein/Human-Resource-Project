@@ -36,6 +36,9 @@ public class Login implements Initializable {
     @FXML
     private CheckBox checkBox;
     private String rememberUser;
+
+    public static String currentUserSsn = "";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -56,14 +59,30 @@ public class Login implements Initializable {
 
                 if (DatabaseC.getInstance().CheckPassword(PasswordText.getText())) {
 
-                    Node node = (Node) event.getSource();
-                    Stage stage = (Stage) node.getScene().getWindow();
+                    if(!DatabaseC.getInstance().checkAccess(SsnText.getText())){
+                        currentUserSsn = SsnText.getText();
+                        Node node = (Node) event.getSource();
+                        Stage stage = (Stage) node.getScene().getWindow();
 
-                    FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("UserScreen.fxml"));
-                    Parent root = FxmlLoader.load();
+                        FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("UserScreen.fxml"));
+                        Parent root = FxmlLoader.load();
 
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+
+                    }else if(DatabaseC.getInstance().checkAccess(SsnText.getText())){
+                        currentUserSsn = SsnText.getText();
+                        Node node = (Node) event.getSource();
+                        Stage stage = (Stage) node.getScene().getWindow();
+
+                        FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("AdminScreen.fxml"));
+                        Parent root = FxmlLoader.load();
+
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                    }
+
+
                 } else if (!DatabaseC.getInstance().CheckPassword(PasswordText.getText())) {
                     ssnw.setText("Password is incorrect!");
                 }
@@ -142,4 +161,5 @@ public class Login implements Initializable {
             bufferedReader.close();
         }
     }
+
 }
