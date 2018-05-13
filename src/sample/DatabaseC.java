@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DatabaseC {
     private static DatabaseC instance = null;
@@ -11,7 +12,8 @@ public class DatabaseC {
     protected DatabaseC() throws SQLException {
     }
 
-
+    // ------------------CALENDER----------------------
+    ArrayList<CalenderBoxes> calenderBox = new ArrayList<>();
     // ------------------Password FXML----------------------
     private String SSN;
     private String Password;
@@ -217,5 +219,33 @@ public class DatabaseC {
         }else
             return false;
     }
+
+
+
+    //-----------------------------------------CALENDER-----------------------------------
+
+
+
+        public boolean workingDay (String month, String day) throws SQLException {
+            PreparedStatement statement = c.prepareStatement("SELECT `Working day` from timestamp where userlogin_SSN = '"+SSN+ "' AND `Working day` = '2018-"+month+"-"+day+"'");
+            ResultSet rs = statement.executeQuery();
+            String myWorkDay = "2018-"+month+"-"+day;
+            String workDay = "";
+            while (rs.next()) {
+                workDay = rs.getString(1);
+            }
+            if (myWorkDay.equals(workDay)){
+                return true;
+            }else {
+                return false;
+            }
+        }
+
+
+
+
+
+
+
 
 }

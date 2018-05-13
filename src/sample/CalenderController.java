@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
 public class CalenderController implements Initializable {
 
     @FXML
-    private Text day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day15, day16, day17, day18, day19, day20, day21, day22, day23, day24, day25, day26, day27, day28, day29, day30, day31, day32, day33, day34, day35;
+    private Text day1,day2,day3,day4,day5,day6,day7,day8,day9,day10,day11,day12,day13,day14,day15,day16,day17,day18,day19,day20,day21,day22,day23,day24,day25,day26,day27,day28,day29,day30,day31,day32,day33,day34,day35;
 
     @FXML
     private Rectangle box1,box2,box3,box4,box5,box6,box7,box8,box9,box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,box20,box21,box22,box23,box24,box25,box26,box27,box28,box29,box30,box31,box32,box33,box34,box35;
@@ -65,7 +65,11 @@ public class CalenderController implements Initializable {
         lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         dayLastMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         daysInMonth();
-        changeMonth();
+        try {
+            changeMonth();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -79,7 +83,7 @@ public class CalenderController implements Initializable {
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-    }public void decreaseMonth(ActionEvent event) throws IOException {
+    }public void decreaseMonth(ActionEvent event) throws IOException, SQLException {
         nextMonth.setDisable(false);
         month--;
         if (month == 0){
@@ -108,7 +112,7 @@ public class CalenderController implements Initializable {
         }else if (month == 11){
             currentMonth.setText("December");
         }changeMonth();
-    }public void increaseMonth(ActionEvent event) throws IOException {
+    }public void increaseMonth(ActionEvent event) throws IOException, SQLException {
         previousMonth.setDisable(false);
         month++;
         if (month == 0){
@@ -268,7 +272,7 @@ public class CalenderController implements Initializable {
             whichDay = 6;
         }
 
-    }public void changeMonth (){
+    }public void changeMonth () throws SQLException {
 
         daysInMonth();
         day = 1;
@@ -283,10 +287,15 @@ public class CalenderController implements Initializable {
             }else if (day>lastDay){
                 textArray.get(i).setText(""+dayNextMonth);
                 boxArray.get(i).setFill(Paint.valueOf("#d0d0d0"));
+
+
                 dayNextMonth++;
             }else{
                 textArray.get(i).setText(""+(day));
                 boxArray.get(i).setFill(Paint.valueOf("#ffffff"));
+                if (DatabaseC.getInstance().workingDay(String.valueOf(month),String.valueOf(dayNextMonth))){
+                    boxArray.get(i).setFill(Paint.valueOf("#19ff00"));
+                }
                 day++;
             }
         }
