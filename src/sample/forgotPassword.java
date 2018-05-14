@@ -96,10 +96,11 @@ public class forgotPassword implements Initializable {
             emailCode.setDisable(false);
             emailCode.setEditable(true);
         } else {
-            //// error handling
-            /*if (SsnText.getText().isEmpty() || emailCode.getText().isEmpty()) {
-            warningForgetP.setText("Enter details in empty fields!");
-            */
+            Alert dialog = new Alert(Alert.AlertType.ERROR);
+            dialog.setTitle("ERROR");
+            dialog.setHeaderText("Some error ");
+            dialog.setContentText("error");
+            dialog.show();
         }
     }
 
