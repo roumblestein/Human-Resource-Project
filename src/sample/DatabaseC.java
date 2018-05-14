@@ -121,6 +121,28 @@ public class DatabaseC {
         a.close();
     }
 
+    public int totalHours (String month) throws SQLException {
+        PreparedStatement statement = c.prepareStatement("SELECT  Start, Stop from timestamp where userlogin_SSN = '"+SSN+ "' AND `Working day` LIKE '2018-"+month+"-%' order by `Working day` +1");
+        ResultSet rs = statement.executeQuery();
+
+        String startTime = "";
+        String stopTime = "";
+        int hours = 0;
+        int totalHour = 0;
+        while (rs.next()) {
+            startTime = rs.getString(1);
+            stopTime = rs.getString(2);
+
+            hours = Integer.parseInt(stopTime.substring(0,2)) - Integer.parseInt(startTime.substring(0,2));
+            totalHour += hours;
+        }
+
+        return totalHour;
+    }
+
+
+
+
     //--------------------------ADMIN METHODS-------------------------------
 
     public void addEmployee(User user, Employment employment, Skills skills) throws SQLException{
@@ -388,8 +410,6 @@ public class DatabaseC {
                 if (Integer.parseInt(getDay)<10){
                     getDay = ""+Integer.parseInt(getDay);
                 }
-
-                System.out.println(workDay + startTime + stopTime + haveWorked + getDay);
 
                 CalenderBoxes calenderBoxes = new CalenderBoxes(haveWorked, getDay, month, startTime, stopTime);
 
