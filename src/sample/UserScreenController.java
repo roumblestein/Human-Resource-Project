@@ -70,6 +70,9 @@ public class UserScreenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try{
+
+
+
             currentUser = DatabaseC.getInstance().getPersonalInformation(Login.currentUserSsn);
             currentUserEmployment = DatabaseC.getInstance().getEmploymentInformation(Login.currentUserSsn);
             currentUserSkills = DatabaseC.getInstance().getSkills(Login.currentUserSsn);
