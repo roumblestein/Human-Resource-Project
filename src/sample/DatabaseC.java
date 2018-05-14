@@ -300,8 +300,6 @@ public class DatabaseC {
             PreparedStatement st = c.prepareStatement("INSERT INTO timestamp (userlogin_SSN, Start, Stop, `Working day`, checkedIn, workDayOver) VALUES ('"+SSN+"',null,null,'"+date+"', 0,0)");
             st.execute();
         }
-
-
     }
 
 
