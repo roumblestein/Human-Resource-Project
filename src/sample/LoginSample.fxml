@@ -42,9 +42,6 @@
          <font>
             <Font size="18.0" />
          </font>
-         <tooltip>
-            <Tooltip text="Empty Tooltip" />
-         </tooltip>
       </Label>
       <PasswordField fx:id="PasswordText" layoutX="158.0" layoutY="234.0" prefHeight="25.0" prefWidth="250.0" promptText="Password">
          <tooltip>

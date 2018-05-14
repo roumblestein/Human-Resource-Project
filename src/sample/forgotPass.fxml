@@ -20,9 +20,9 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="SsnText" layoutX="110.0" layoutY="66.0" prefHeight="32.0" prefWidth="262.0" promptText="Enter your ssn or email address" />
+      <TextField fx:id="SsnText" layoutX="110.0" layoutY="66.0" prefHeight="32.0" prefWidth="262.0" promptText="Social security number:" />
       <TextField fx:id="emailCode" disable="true" editable="false" layoutX="105.0" layoutY="136.0" prefHeight="32.0" prefWidth="262.0" promptText="XXXX" />
-      <Label layoutX="119.0" layoutY="39.0" prefHeight="0.0" prefWidth="277.0" text="Ssn or email address">
+      <Label layoutX="119.0" layoutY="39.0" prefHeight="0.0" prefWidth="277.0" text="Social security number:">
          <font>
             <Font size="18.0" />
          </font>
