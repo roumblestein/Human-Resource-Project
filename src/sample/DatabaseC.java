@@ -187,6 +187,31 @@ public class DatabaseC {
         b.close();
     }
 
+    public void editEmployeeInformation(User user, Employment emp) throws SQLException{
+        PreparedStatement update = c.prepareStatement("Update userlogin, `personal phone`, employment Set Name = ?, Lastname = ?, Email = ?, " +
+                "PhoneNr = ?, Adress = ?, Salary = ?, EmploymentDate = ?, LastEmploymentDate = ?, Employment = ?, Status = ?, Password = ?, " +
+                "Access = ? where userlogin.SSN = '"+user.getSsn()+"' and userlogin.SSN = employment.userlogin_SSN " +
+                "and userlogin.SSN = `personal phone`.userlogin_SSN and userlogin.SSN = employment.userlogin_SSN");
+
+        update.setString(1, user.getName());
+        update.setString(2, user.getLastName());
+        update.setString(3, user.getEmail());
+        update.setString(4, user.getPhone1());
+        update.setString(5, user.getAddress());
+
+        update.setString(6, emp.getSalary());
+        update.setString(7, emp.getEmployment());
+        update.setString(8, emp.getLastEmploymentDate());
+        update.setString(9, emp.getEmployment());
+        update.setString(10, emp.getStatus());
+
+        update.setString(11, user.getPassword());
+        update.setString(12, user.getAccess());
+
+        update.executeUpdate();
+        update.close();
+    }
+
 
 
     //-------------------------PASSWORD METHODS-----------------------------

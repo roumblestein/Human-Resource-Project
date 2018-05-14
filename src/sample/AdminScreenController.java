@@ -27,6 +27,7 @@ public class AdminScreenController implements Initializable {
     @FXML private Button reports;
 
     @FXML private Tab editEmployeeTab;
+    @FXML private Tab manageEmployeeTab;
     @FXML private TabPane adminTabPane;
 
     @FXML private TextField ssnTextField;
@@ -40,6 +41,23 @@ public class AdminScreenController implements Initializable {
     @FXML private TextField endDateTextField;
     @FXML private TextField passwordTextField;
 
+    @FXML private TextField editFirstNameTextField;
+    @FXML private TextField editLastNameTextField;
+    @FXML private TextField editEmailTextField;
+    @FXML private TextField editPhoneTextField;
+    @FXML private TextField editAdressTextField;
+    @FXML private TextField editSalaryTextField;
+    @FXML private TextField editStartDateTextField;
+    @FXML private TextField editEndDateTextField;
+    @FXML private TextField editEmploymentTextField;
+    @FXML private TextField editStatusTextField;
+    /*@FXML private TextField editSkillCategoryTextField;
+    @FXML private TextField editSkillTextField;
+    @FXML private TextField editLevelTextField;
+    @FXML private TextField editExperienceTextField;*/
+
+    @FXML private TextField editPasswordTextField;
+    @FXML private TextField editAccessTextField;
     @FXML private TextField removeEmployeeTextField;
 
     ObservableList employmentTypeBox = FXCollections.observableArrayList();
@@ -64,6 +82,10 @@ public class AdminScreenController implements Initializable {
     @FXML private TableColumn<Contacts, String> firstNameColumn;
     @FXML private TableColumn<Contacts, String> lastNameColumn;
 
+    private User user;
+    private Employment employment;
+    private Skills skills;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -75,6 +97,9 @@ public class AdminScreenController implements Initializable {
             userTable.setItems(getContacts());
 
             editEmployeeTab.setDisable(true);
+            setTextFieldAccess(true);
+
+
 
         }catch(SQLException a){
             System.out.println("Error");
@@ -104,17 +129,84 @@ public class AdminScreenController implements Initializable {
         userTable.setItems(getContacts());
     }
 
-    public void viewEmployeeButton(ActionEvent event){
-
+    public void viewEmployeeButton(ActionEvent event) throws SQLException{
+        setTextFieldAccess(true);
+        adminTabPane.getSelectionModel().select(editEmployeeTab);
+        loadUserInfo();
     }
 
-    public void editEmployeeButton(ActionEvent event){
-        //editEmployeeTab.setDisable(false);
+    public void editEmployeeButton(ActionEvent event) throws SQLException{
+        editEmployeeTab.setDisable(false);
         adminTabPane.getSelectionModel().select(editEmployeeTab);
+        setTextFieldAccess(false);
+        loadUserInfo();
+    }
+
+    public void saveEditsButton() throws SQLException{
+        adminTabPane.getSelectionModel().select(manageEmployeeTab);
+        editEmployeeTab.setDisable(true);
+        setTextFieldAccess(true);
+
+        User editedUser = new User(removeEmployeeTextField.getText(), editFirstNameTextField.getText(), editLastNameTextField.getText(),
+                editEmailTextField.getText(),editPhoneTextField.getText(), editAdressTextField.getText(),
+                "1", editPasswordTextField.getText(), editAccessTextField.getText());
+        Employment editedEmployment = new Employment(editSalaryTextField.getText(), editEmploymentTextField.getText(),
+                editStatusTextField.getText(), editStartDateTextField.getText(), editEndDateTextField.getText());
+
+
+        DatabaseC.getInstance().editEmployeeInformation(editedUser,editedEmployment);
+        System.out.println("edits saved");
+
     }
 
     public void reportsButton(ActionEvent event){
 
+    }
+
+    public void loadUserInfo() throws SQLException{
+        user = DatabaseC.getInstance().getPersonalInformation(removeEmployeeTextField.getText());
+        employment = DatabaseC.getInstance().getEmploymentInformation(removeEmployeeTextField.getText());
+        skills = DatabaseC.getInstance().getSkills(removeEmployeeTextField.getText());
+
+        editFirstNameTextField.setText(user.getName());
+        editLastNameTextField.setText(user.getLastName());
+        editEmailTextField.setText(user.getEmail());
+        editPhoneTextField.setText(user.getPhone1());
+        editAdressTextField.setText(user.getAddress());
+
+        editSalaryTextField.setText(employment.getSalary());
+        editStartDateTextField.setText(employment.getEmploymentDate());
+        editEndDateTextField.setText(employment.getLastEmploymentDate());
+        editEmploymentTextField.setText(employment.getEmployment());
+        editStatusTextField.setText(employment.getStatus());
+
+        /*editSkillCategoryTextField.setText(skills.getSkillCategory());
+        editSkillTextField.setText(skills.getSkill());
+        editLevelTextField.setText(skills.getLevel());
+        editExperienceTextField.setText(skills.getExperience());*/
+
+        editPasswordTextField.setText(user.getPassword());
+        editAccessTextField.setText(user.getAccess());
+
+    }
+
+    public void setTextFieldAccess(boolean val){
+        editFirstNameTextField.setDisable(val);
+        editLastNameTextField.setDisable(val);
+        editEmailTextField.setDisable(val);
+        editPhoneTextField.setDisable(val);
+        editAdressTextField.setDisable(val);
+        editSalaryTextField.setDisable(val);
+        editStartDateTextField.setDisable(val);
+        editEndDateTextField.setDisable(val);
+        editEmploymentTextField.setDisable(val);
+        editStatusTextField.setDisable(val);
+        /*editSkillCategoryTextField.setDisable(val);
+        editSkillTextField.setDisable(val);
+        editLevelTextField.setDisable(val);
+        editExperienceTextField.setDisable(val);*/
+        editPasswordTextField.setDisable(val);
+        editAccessTextField.setDisable(val);
     }
 
     public void loadData(){
