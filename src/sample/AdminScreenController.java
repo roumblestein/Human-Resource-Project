@@ -26,6 +26,9 @@ public class AdminScreenController implements Initializable {
     @FXML private Button manageEmployees;
     @FXML private Button reports;
 
+    @FXML private Tab editEmployeeTab;
+    @FXML private TabPane adminTabPane;
+
     @FXML private TextField ssnTextField;
     @FXML private TextField firstNameTextField;
     @FXML private TextField lastNameTextField;
@@ -65,12 +68,13 @@ public class AdminScreenController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         try{
-
             ssnColumn.setCellValueFactory(new PropertyValueFactory<Contacts, String>("ssn"));
             firstNameColumn.setCellValueFactory(new PropertyValueFactory<Contacts, String>("name"));
             lastNameColumn.setCellValueFactory(new PropertyValueFactory<Contacts, String>("lastName"));
 
             userTable.setItems(getContacts());
+
+            editEmployeeTab.setDisable(true);
 
         }catch(SQLException a){
             System.out.println("Error");
@@ -104,8 +108,9 @@ public class AdminScreenController implements Initializable {
 
     }
 
-    public void manageEmployeeButton(ActionEvent event){
-
+    public void editEmployeeButton(ActionEvent event){
+        //editEmployeeTab.setDisable(false);
+        adminTabPane.getSelectionModel().select(editEmployeeTab);
     }
 
     public void reportsButton(ActionEvent event){

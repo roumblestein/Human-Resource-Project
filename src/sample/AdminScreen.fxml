@@ -16,7 +16,7 @@
    <children>
       <Button fx:id="logOut" layoutX="23.0" layoutY="404.0" mnemonicParsing="false" onAction="#SignOut" prefHeight="34.0" prefWidth="89.0" text="Sign out" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="372.0" layoutX="23.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" width="821.0" />
-      <TabPane layoutX="23.0" layoutY="21.0" prefHeight="372.0" prefWidth="821.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="adminTabPane" layoutX="23.0" layoutY="21.0" prefHeight="372.0" prefWidth="821.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Add Employee">
             <content>
@@ -67,9 +67,14 @@
                         <TextField fx:id="removeEmployeeTextField" layoutX="162.0" layoutY="92.0" prefHeight="25.0" prefWidth="184.0" promptText="Enter SSN here" />
                         <Text layoutX="200.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter employee SSN" />
                         <Button layoutX="203.0" layoutY="147.0" mnemonicParsing="false" onAction="#removeEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Remove" />
-                        <Button layoutX="203.0" layoutY="189.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="Edit" />
+                        <Button layoutX="203.0" layoutY="189.0" mnemonicParsing="false" onAction="#editEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Edit" />
                         <Button layoutX="203.0" layoutY="231.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="View" />
                      </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="editEmployeeTab" text="Edit">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
         </tabs>
