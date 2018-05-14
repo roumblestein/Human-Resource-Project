@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.javafx.css.Stylesheet;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -13,7 +14,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.w3c.dom.css.CSSStyleSheet;
+import org.w3c.dom.stylesheets.StyleSheet;
+import org.w3c.dom.stylesheets.StyleSheetList;
 
+import javax.jws.soap.SOAPBinding;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,7 +33,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
 
 public class Login implements Initializable {
     @FXML
@@ -79,6 +83,11 @@ public class Login implements Initializable {
 
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
+                        Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+                        dialog.setTitle("INFORMATION");
+                        dialog.setHeaderText("Don't forget the Time Stamp");
+                        dialog.setContentText("Always use the Time Stamp when you start working !");
+                        dialog.showAndWait();
 
                     }else if(DatabaseC.getInstance().checkAccess(SsnText.getText())){
                         currentUserSsn = SsnText.getText();
@@ -89,6 +98,7 @@ public class Login implements Initializable {
                         Parent root = FxmlLoader.load();
 
                         Scene scene = new Scene(root);
+
                         stage.setScene(scene);
                     }
 

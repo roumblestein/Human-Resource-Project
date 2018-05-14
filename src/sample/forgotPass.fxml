@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,9 +22,12 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="SsnText" layoutX="110.0" layoutY="66.0" prefHeight="32.0" prefWidth="262.0" promptText="Enter your ssn or email address" />
+      <TextField fx:id="SsnText" layoutX="110.0" layoutY="66.0" prefHeight="32.0" prefWidth="262.0" promptText="Social security number:">
+         <effect>
+            <DropShadow />
+         </effect></TextField>
       <TextField fx:id="emailCode" disable="true" editable="false" layoutX="105.0" layoutY="136.0" prefHeight="32.0" prefWidth="262.0" promptText="XXXX" />
-      <Label layoutX="119.0" layoutY="39.0" prefHeight="0.0" prefWidth="277.0" text="Ssn or email address">
+      <Label layoutX="119.0" layoutY="39.0" prefHeight="0.0" prefWidth="277.0" text="Social security number:">
          <font>
             <Font size="18.0" />
          </font>
@@ -36,11 +41,17 @@
          <font>
             <Font size="18.0" />
          </font>
+         <effect>
+            <InnerShadow />
+         </effect>
       </Button>
       <Button fx:id="emailButton" layoutX="105.0" layoutY="202.0" mnemonicParsing="false" onAction="#emailButton" prefHeight="39.0" prefWidth="154.0" text="Send email">
          <font>
             <Font size="18.0" />
          </font>
+         <effect>
+            <InnerShadow />
+         </effect>
       </Button>
       <Label fx:id="warningForgetP" layoutX="105.0" layoutY="162.0" prefHeight="27.0" prefWidth="262.0" />
    </children>

@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -56,6 +57,7 @@ public class forgotPassword implements Initializable {
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.close();
     }
 
     public void emailButton(ActionEvent event) throws IOException, SQLException, MessagingException {
@@ -115,53 +117,67 @@ public class forgotPassword implements Initializable {
     }
 
     public void createNewPass(ActionEvent event) throws SQLException, IOException {
+        if (checkPass()) {
+                DatabaseC.getInstance().newPassword(newPass.getText());
+
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginSample.fxml"));
+                Parent root = fxmlLoader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.close();
+            }
+
+        else if (!checkPass()){
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+            dialog.setTitle("INFORMATION");
+            dialog.setHeaderText("Password Safety ");
+            dialog.setContentText("At least 6 characters" +" "+
+                    "At least 1 cap" +
+                    " " +
+                    "At least 1 lower case" +
+                    " " +
+                    "At least 1 number " +
+                    " ");
+            dialog.showAndWait();
+        }
+    }
+
+    public boolean checkPass() {
+            boolean passwordSafety = false;
+
+
         if (newPass.getText().equals(verifyPass.getText())) {
-            DatabaseC.getInstance().newPassword(newPass.getText());
+            if (password.length() > 5) {
+                boolean hasNum = false;
+                boolean hasCap = false;
+                boolean hasLow = false;
+                char c;
+                for (int i = 0; i < password.length(); i++)
 
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginSample.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+                {
+                    c = password.charAt(i);
+                    if (Character.isDigit(c)) {
+                        hasNum = true;
+                    } else if (Character.isUpperCase(c)) {
+                        hasCap = true;
+                    } else if (Character.isLowerCase(c)) {
+                        hasLow = true;
+                    }
+                    if (hasNum && hasCap && hasLow) {
+                        passwordSafety = true;
+                    }
+                }
 
-        }
-    }
-    public boolean valPass (String password) {
-    if (password.length() > 5)
-    {
-        if (checkPass(password))
-        {
-            return true;
-        }
+            } else {
+                warningForgetP.setText("Use at least 6 characters ");
+                Toolkit.getDefaultToolkit().beep();
 
-    }else
-    {
-        warningForgetP.setText("Use at least 6 characters ");
-        Toolkit.getDefaultToolkit().beep();
-    }return false;
-    }
-    public static boolean checkPass(String password) {
-
-        boolean hasNum = false;
-        boolean hasCap = false;
-        boolean hasLow = false;
-        char c;
-        for (int i = 0; i < password.length(); i++)
-
-        {
-            c = password.charAt(i);
-            if (Character.isDigit(c)) {
-                hasNum = true;
-            } else if (Character.isUpperCase(c)) {
-                hasCap = true;
-            } else if (Character.isLowerCase(c)) {
-                hasLow = true;
-            }
-            if (hasNum && hasCap && hasLow) {
-                return true;
             }
         }
-            return false;
-        }
+
+
+       return passwordSafety;
     }
+}

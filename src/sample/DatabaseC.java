@@ -297,6 +297,7 @@ public class DatabaseC {
             password = rs.getString(1);
         }
         if (password.equals(user)) {
+
             Password = user;
             return true;
         } else {
