@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="867.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AdminScreenController">
+
+   <children>
+      <Button fx:id="logOut" layoutX="23.0" layoutY="404.0" mnemonicParsing="false" onAction="#SignOut" prefHeight="34.0" prefWidth="89.0" text="Sign out" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="372.0" layoutX="23.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" width="821.0" />
+      <TabPane fx:id="adminTabPane" layoutX="23.0" layoutY="21.0" prefHeight="372.0" prefWidth="821.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Add Employee">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="376.0" prefWidth="809.0">
+                     <children>
+                        <ChoiceBox fx:id="skillCategory" layoutX="418.0" layoutY="27.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="skill" layoutX="418.0" layoutY="82.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="status" layoutX="231.0" layoutY="226.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="level" layoutX="418.0" layoutY="131.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="department" layoutX="231.0" layoutY="275.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="employmentType" layoutX="231.0" layoutY="179.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="experience" layoutX="418.0" layoutY="179.0" prefWidth="150.0" />
+                        <TextField fx:id="adressTextField" layoutX="43.0" layoutY="275.0" promptText="Address" />
+                        <TextField fx:id="phoneTextField" layoutX="43.0" layoutY="226.0" promptText="Phone" />
+                        <TextField fx:id="emailTextField" layoutX="43.0" layoutY="179.0" promptText="Email" />
+                        <TextField fx:id="lastNameTextField" layoutX="43.0" layoutY="131.0" promptText="Last Name" />
+                        <TextField fx:id="firstNameTextField" layoutX="43.0" layoutY="82.0" promptText="First Name" />
+                        <TextField fx:id="ssnTextField" layoutX="43.0" layoutY="27.0" promptText="SSN" />
+                        <TextField fx:id="endDateTextField" layoutX="232.0" layoutY="132.0" promptText="End Date" />
+                        <TextField fx:id="startDateTextField" layoutX="232.0" layoutY="82.0" promptText="Start Date" />
+                        <TextField fx:id="salaryTextField" layoutX="232.0" layoutY="27.0" promptText="Salary" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7ddb4" height="331.0" layoutX="613.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="201.0" />
+                        <TextField fx:id="passwordTextField" layoutX="639.0" layoutY="27.0" promptText="Password" />
+                        <Button layoutX="653.0" layoutY="226.0" mnemonicParsing="false" onAction="#addEmployeeButton" prefHeight="25.0" prefWidth="122.0" text="Submit" />
+                        <Button layoutX="653.0" layoutY="263.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="&lt;&lt;Go back   " />
+                        <Text layoutX="272.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employment" />
+                        <Text layoutX="290.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
+                        <Text layoutX="274.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" />
+                        <Text layoutX="460.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skill Category" />
+                        <Text layoutX="482.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skill" />
+                        <Text layoutX="480.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level" />
+                        <Text layoutX="464.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Experience" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Manage Employee">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="userTable" layoutX="533.0" prefHeight="342.0" prefWidth="287.0">
+                          <columns>
+                            <TableColumn fx:id="ssnColumn" prefWidth="98.0" text="SSN" />
+                            <TableColumn fx:id="firstNameColumn" prefWidth="97.0" text="Name" />
+                              <TableColumn fx:id="lastNameColumn" prefWidth="91.0" text="Lastname" />
+                          </columns>
+                        </TableView>
+                        <TextField fx:id="removeEmployeeTextField" layoutX="162.0" layoutY="92.0" prefHeight="25.0" prefWidth="184.0" promptText="Enter SSN here" />
+                        <Text layoutX="200.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter employee SSN" />
+                        <Button layoutX="203.0" layoutY="147.0" mnemonicParsing="false" onAction="#removeEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Remove" />
+                        <Button layoutX="203.0" layoutY="189.0" mnemonicParsing="false" onAction="#editEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Edit" />
+                        <Button layoutX="203.0" layoutY="231.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="View" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="editEmployeeTab" text="Edit">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

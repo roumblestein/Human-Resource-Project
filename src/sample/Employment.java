@@ -5,11 +5,10 @@ package sample;
  */
 public class Employment {
 
-    private int salary;
-    private String employment, status, employmentDate, lastEmploymentDate;
+    private String salary, employment, status, employmentDate, lastEmploymentDate;
 
 
-    public Employment(int salary, String employment, String status, String employmentDate, String lastEmploymentDate){
+    public Employment(String salary, String employment, String status, String employmentDate, String lastEmploymentDate){
         this.salary = salary;
         this.employment = employment;
         this.status = status;
@@ -17,11 +16,11 @@ public class Employment {
         this.lastEmploymentDate = lastEmploymentDate;
     }
 
-    public int getSalary() {
+    public String getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(String salary) {
         this.salary = salary;
     }
 

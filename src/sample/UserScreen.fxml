@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,7 +26,7 @@
                               <Image url="@../Images/KantRuntimg.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="ssnTextField" layoutX="164.0" layoutY="98.0" />
+                        <TextField fx:id="ssnTextField" editable="false" layoutX="164.0" layoutY="98.0" />
                         <TextField fx:id="firstNameTextField" layoutX="164.0" layoutY="145.0" />
                         <TextField fx:id="lastNameTextField" layoutX="164.0" layoutY="188.0" />
                         <Label layoutX="41.0" layoutY="33.0" prefHeight="27.0" prefWidth="145.0" text="Basic information">
@@ -74,7 +76,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab text="SalaryReport">
+          <Tab text="Employment">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -83,22 +85,29 @@
                               <Image url="@../Images/KantRuntimg.png" />
                            </image>
                         </ImageView>
-                     </children></AnchorPane>
+                        <TableView fx:id="employmentTable" layoutX="26.0" prefHeight="140.0" prefWidth="613.0">
+                          <columns>
+                            <TableColumn fx:id="salaryColumn" editable="false" prefWidth="118.0" text="Salary" />
+                            <TableColumn fx:id="employmentColumn" prefWidth="112.0" text="Employment" />
+                              <TableColumn fx:id="statusColumn" prefWidth="121.0" text="Status" />
+                              <TableColumn fx:id="startDateColumn" prefWidth="127.0" text="Start Date" />
+                              <TableColumn fx:id="endDateColumn" prefWidth="134.0" text="End Date" />
+                          </columns>
+                        </TableView>
+                        <TableView fx:id="skillsTable" layoutX="26.0" layoutY="140.0" prefHeight="136.0" prefWidth="613.0">
+                          <columns>
+                            <TableColumn fx:id="skillCategoryColumn" prefWidth="122.0" text="Skill Category" />
+                            <TableColumn fx:id="skillColumn" prefWidth="108.0" text="Skill" />
+                              <TableColumn fx:id="levelColumn" minWidth="0.0" prefWidth="120.0" text="Level" />
+                              <TableColumn fx:id="experienceColumn" prefWidth="124.0" text="Experience" />
+                              <TableColumn fx:id="performanceColumn" prefWidth="138.0" text="Performance" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Co-workers">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="303.0" fitWidth="725.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/KantRuntimg.png" />
-                           </image>
-                        </ImageView>
-                     </children></AnchorPane>
-              </content>
-            </Tab>
-            <Tab text="Untitled Tab">
+            <Tab text="Contacts">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="725.0">
                      <children>
@@ -107,6 +116,14 @@
                               <Image url="@../Images/KantRuntimg.png" />
                            </image>
                         </ImageView>
+                        <TableView fx:id="contactsTable" layoutX="26.0" prefHeight="276.0" prefWidth="613.0">
+                          <columns>
+                            <TableColumn fx:id="nameColumn" prefWidth="140.0" text="Name" />
+                            <TableColumn fx:id="lastNameColumn" prefWidth="152.0" text="Surname" />
+                              <TableColumn fx:id="phoneColumn" prefWidth="156.0" text="Phone" />
+                              <TableColumn fx:id="emailColumn" prefWidth="164.0" text="Email" />
+                          </columns>
+                        </TableView>
                      </children></AnchorPane>
               </content>
             </Tab>

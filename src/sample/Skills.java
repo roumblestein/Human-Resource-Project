@@ -6,7 +6,7 @@ package sample;
 public class Skills {
     private String skill, level, skillCategory, experience, performance;
 
-    public Skills(String skill, String level, String skillCategory, String experience, String performance){
+    public Skills(String skillCategory, String skill, String level, String experience, String performance){
         this.skill = skill;
         this.level = level;
         this.skillCategory = skillCategory;
