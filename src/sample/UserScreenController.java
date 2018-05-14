@@ -170,7 +170,7 @@ public class UserScreenController implements Initializable {
     @FXML private void update() throws SQLException{
         DatabaseC.getInstance().updateInformation(Login.currentUserSsn, firstNameTextField.getText(),
                 lastNameTextField.getText(), emailTextFiled.getText(),addressTextField.getText(), phoneOneTextField.getText());
-        System.out.println(emailTextFiled.getText() + " " + phoneOneTextField.getText());
+        //System.out.println(emailTextFiled.getText() + " " + phoneOneTextField.getText());
 
     }
 }

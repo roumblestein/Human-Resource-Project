@@ -53,7 +53,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Manage Employee">
+            <Tab fx:id="manageEmployeeTab" text="Manage Employee">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -68,13 +68,40 @@
                         <Text layoutX="200.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter employee SSN" />
                         <Button layoutX="203.0" layoutY="147.0" mnemonicParsing="false" onAction="#removeEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Remove" />
                         <Button layoutX="203.0" layoutY="189.0" mnemonicParsing="false" onAction="#editEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Edit" />
-                        <Button layoutX="203.0" layoutY="231.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="View" />
+                        <Button layoutX="203.0" layoutY="231.0" mnemonicParsing="false" onAction="#viewEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="View" />
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="editEmployeeTab" text="Edit">
+            <Tab fx:id="editEmployeeTab" text="Edit &amp; View">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="editAdressTextField" layoutX="50.0" layoutY="279.0" promptText="Address" />
+                        <TextField fx:id="editPhoneTextField" layoutX="50.0" layoutY="229.0" promptText="Phone" />
+                        <TextField fx:id="editEmailTextField" layoutX="50.0" layoutY="172.0" promptText="Email" />
+                        <TextField fx:id="editLastNameTextField" layoutX="50.0" layoutY="113.0" promptText="Last Name" />
+                        <TextField fx:id="editFirstNameTextField" layoutX="50.0" layoutY="53.0" promptText="First Name" />
+                        <TextField fx:id="editEndDateTextField" layoutX="238.0" layoutY="172.0" promptText="End Date" />
+                        <TextField fx:id="editStartDateTextField" layoutX="238.0" layoutY="113.0" promptText="Start Date" />
+                        <TextField fx:id="editSalaryTextField" layoutX="238.0" layoutY="53.0" promptText="Salary" />
+                        <TextField fx:id="editEmploymentTextField" layoutX="238.0" layoutY="228.0" promptText="Employment" />
+                        <TextField fx:id="editStatusTextField" layoutX="238.0" layoutY="279.0" promptText="Status" />
+                        <TextField fx:id="editPasswordTextField" layoutX="622.0" layoutY="53.0" promptText="Password" />
+                        <TextField fx:id="editAccessTextField" layoutX="622.0" layoutY="113.0" promptText="Access" />
+                        <Button layoutX="653.0" layoutY="259.0" mnemonicParsing="false" onAction="#saveEditsButton" prefHeight="41.0" prefWidth="118.0" text="Save Modification" />
+                        <Text layoutX="108.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+                        <Text layoutX="99.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lastname" />
+                        <Text layoutX="110.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+                        <Text layoutX="108.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone" />
+                        <Text layoutX="107.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adress" />
+                        <Text layoutX="297.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salary" />
+                        <Text layoutX="288.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="StartDate" />
+                        <Text layoutX="290.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EndDate" />
+                        <Text layoutX="279.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employment" />
+                        <Text layoutX="296.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
+                        <Text layoutX="672.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+                        <Text layoutX="679.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Access" />
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>
