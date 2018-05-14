@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -33,7 +35,13 @@ public class CalenderController implements Initializable {
     private Text day1,day2,day3,day4,day5,day6,day7,day8,day9,day10,day11,day12,day13,day14,day15,day16,day17,day18,day19,day20,day21,day22,day23,day24,day25,day26,day27,day28,day29,day30,day31,day32,day33,day34,day35;
 
     @FXML
+    private Text testText, text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16,text17,text18,text19,text20,text21,text22,text23,text24,text25,text26,text27,text28,text29,text30,text31,text32,text33,text34,text35;
+
+    @FXML
     private Rectangle box1,box2,box3,box4,box5,box6,box7,box8,box9,box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,box20,box21,box22,box23,box24,box25,box26,box27,box28,box29,box30,box31,box32,box33,box34,box35;
+
+    @FXML
+    private AnchorPane primaryPane;
 
     @FXML
     private Label currentMonth;
@@ -46,6 +54,7 @@ public class CalenderController implements Initializable {
 
     private ArrayList<Rectangle> boxArray = new ArrayList<>();
     private ArrayList<Text> textArray = new ArrayList<>();
+    private ArrayList<Text> workTimes = new ArrayList<>();
     private int month;
     private int whichDay;
     private int lastDay;
@@ -215,6 +224,43 @@ public class CalenderController implements Initializable {
         boxArray.add(box33);
         boxArray.add(box34);
         boxArray.add(box35);
+        workTimes.add(text1);
+        workTimes.add(text2);
+        workTimes.add(text3);
+        workTimes.add(text4);
+        workTimes.add(text5);
+        workTimes.add(text6);
+        workTimes.add(text7);
+        workTimes.add(text8);
+        workTimes.add(text9);
+        workTimes.add(text10);
+        workTimes.add(text11);
+        workTimes.add(text12);
+        workTimes.add(text13);
+        workTimes.add(text14);
+        workTimes.add(text15);
+        workTimes.add(text16);
+        workTimes.add(text17);
+        workTimes.add(text18);
+        workTimes.add(text19);
+        workTimes.add(text20);
+        workTimes.add(text21);
+        workTimes.add(text22);
+        workTimes.add(text23);
+        workTimes.add(text24);
+        workTimes.add(text25);
+        workTimes.add(text26);
+        workTimes.add(text27);
+        workTimes.add(text28);
+        workTimes.add(text29);
+        workTimes.add(text30);
+        workTimes.add(text31);
+        workTimes.add(text32);
+        workTimes.add(text33);
+        workTimes.add(text34);
+        workTimes.add(text35);
+
+
 
 
 
@@ -278,8 +324,15 @@ public class CalenderController implements Initializable {
         day = 1;
         dayNextMonth = 1;
         previousDaycountdown = whichDay;
+        String thisMonth = String.valueOf(month);
+        if (month<10){
+            thisMonth = "0"+(month+1);
+        }
+        ArrayList<CalenderBoxes> calenderBoxes = DatabaseC.getInstance().workingDay(thisMonth);
+        int startIndex = 0;
         for (int i = 0 ; i < textArray.size(); i++){
             if (i < whichDay){
+                workTimes.get(i).setText("");
                 int pre = dayLastMonth-previousDaycountdown+1;
                 textArray.get(i).setText(""+pre);
                 boxArray.get(i).setFill(Paint.valueOf("#d0d0d0"));
@@ -287,15 +340,24 @@ public class CalenderController implements Initializable {
             }else if (day>lastDay){
                 textArray.get(i).setText(""+dayNextMonth);
                 boxArray.get(i).setFill(Paint.valueOf("#d0d0d0"));
-
+                workTimes.get(i).setText("");
 
                 dayNextMonth++;
             }else{
                 textArray.get(i).setText(""+(day));
                 boxArray.get(i).setFill(Paint.valueOf("#ffffff"));
-                if (DatabaseC.getInstance().workingDay(String.valueOf(month),String.valueOf(dayNextMonth))){
-                    boxArray.get(i).setFill(Paint.valueOf("#19ff00"));
+                workTimes.get(i).setText("");
+                try {
+                    if (calenderBoxes.get(startIndex).getDay().equals(String.valueOf(day))) {
+                        boxArray.get(i).setFill(Paint.valueOf("#00ff19"));
+                        workTimes.get(i).setText(calenderBoxes.get(startIndex).getStartTime()+"\n\n"+calenderBoxes.get(startIndex).getStoptime());
+
+                        startIndex++;
+                    }
+                }catch (IndexOutOfBoundsException e){
+
                 }
+
                 day++;
             }
         }

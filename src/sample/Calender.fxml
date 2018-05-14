@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CalenderController">
+<AnchorPane fx:id="thePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CalenderController">
    <children>
       <Button fx:id="logOut" layoutX="14.0" layoutY="379.0" mnemonicParsing="false" onAction="#signOutButton" opacity="0.99" prefHeight="34.0" prefWidth="89.0" text="&lt;&lt; back" />
       <Button disable="true" layoutX="247.0" layoutY="61.0" mnemonicParsing="false" opacity="0.99" prefHeight="34.0" prefWidth="81.0" style="-fx-background-color: #ff0000; -fx-border-color: black;" text="Sunday" />
@@ -82,7 +82,7 @@
       <Text fx:id="day11" layoutX="496.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="68.999990940094" />
       <Text fx:id="day12" layoutX="577.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="68.999990940094" />
       <Text fx:id="day13" layoutX="658.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="68.999990940094" />
-      <Text fx:id="day14" layoutX="739.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="68.999990940094" />
+      <Text fx:id="day14" layoutX="739.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="68.999990940094" />
       <Text fx:id="day15" layoutX="253.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="68.999990940094" />
       <Text fx:id="day16" layoutX="334.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="68.999990940094" />
       <Text fx:id="day17" layoutX="415.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="68.999990940094" />
@@ -106,5 +106,40 @@
       <Text fx:id="day35" layoutX="739.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="68.999990940094" />
       <Button fx:id="previousMonth" layoutX="386.0" layoutY="24.0" mnemonicParsing="false" onAction="#decreaseMonth" prefHeight="16.0" prefWidth="46.0" text="&lt;&lt;" />
       <Button fx:id="nextMonth" layoutX="629.0" layoutY="24.0" mnemonicParsing="false" onAction="#increaseMonth" prefHeight="25.0" prefWidth="46.0" text="&gt;&gt;" />
+      <Text fx:id="text6" layoutX="681.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text5" layoutX="600.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text18" layoutX="519.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text19" layoutX="600.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text20" layoutX="681.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text21" boundsType="VISUAL" layoutX="762.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text9" layoutX="357.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text10" layoutX="438.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text11" layoutX="520.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text12" layoutX="600.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text13" layoutX="681.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text14" boundsType="VISUAL" layoutX="762.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text8" layoutX="276.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text7" layoutX="762.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text1" layoutX="276.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text2" layoutX="357.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text4" layoutX="520.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text3" layoutX="438.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text27" layoutX="681.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text28" boundsType="VISUAL" layoutX="762.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text15" layoutX="276.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text16" layoutX="357.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text17" layoutX="438.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text26" boundsType="VISUAL" layoutX="600.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text22" boundsType="VISUAL" layoutX="276.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text23" boundsType="VISUAL" layoutX="357.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text24" boundsType="VISUAL" layoutX="438.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text25" boundsType="VISUAL" layoutX="519.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text33" boundsType="VISUAL" layoutX="600.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text34" boundsType="VISUAL" layoutX="681.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text35" boundsType="VISUAL" layoutX="762.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text32" boundsType="VISUAL" layoutX="519.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text31" boundsType="VISUAL" layoutX="438.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text30" boundsType="VISUAL" layoutX="357.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="text29" boundsType="VISUAL" layoutX="276.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    </children>
 </AnchorPane>

@@ -1,8 +1,5 @@
 package sample;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -13,7 +10,7 @@ public class DatabaseC {
     }
 
     // ------------------CALENDER----------------------
-    ArrayList<CalenderBoxes> calenderBox = new ArrayList<>();
+    ArrayList<CalenderBoxes> calenderBox;
     // ------------------Password FXML----------------------
     private String SSN;
     private String Password;
@@ -226,19 +223,35 @@ public class DatabaseC {
 
 
 
-        public boolean workingDay (String month, String day) throws SQLException {
-            PreparedStatement statement = c.prepareStatement("SELECT `Working day` from timestamp where userlogin_SSN = '"+SSN+ "' AND `Working day` = '2018-"+month+"-"+day+"'");
+        public ArrayList<CalenderBoxes> workingDay (String month) throws SQLException {
+            PreparedStatement statement = c.prepareStatement("SELECT `Working day`, Stop, Start, workDayOver  from timestamp where userlogin_SSN = '"+SSN+ "' AND `Working day` LIKE '2018-"+month+"-%' order by `Working day` +1");
             ResultSet rs = statement.executeQuery();
-            String myWorkDay = "2018-"+month+"-"+day;
+            calenderBox = new ArrayList<>();
             String workDay = "";
+            boolean haveWorked = false;
+            String startTime = "";
+            String stopTime = "";
+            String getDay = "";
+
             while (rs.next()) {
                 workDay = rs.getString(1);
+                stopTime = rs.getString(2);
+                startTime = rs.getString(3);
+                haveWorked = rs.getBoolean(4);
+
+
+                getDay = workDay.substring(8,10);
+                if (Integer.parseInt(getDay)<10){
+                    getDay = ""+Integer.parseInt(getDay);
+                }
+
+                System.out.println(workDay + startTime + stopTime + haveWorked + getDay);
+
+                CalenderBoxes calenderBoxes = new CalenderBoxes(haveWorked, getDay, month, startTime, stopTime);
+
+                calenderBox.add(calenderBoxes);
             }
-            if (myWorkDay.equals(workDay)){
-                return true;
-            }else {
-                return false;
-            }
+            return calenderBox;
         }
 
 
