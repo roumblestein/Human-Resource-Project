@@ -9,10 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +37,8 @@ public class AdminScreenController implements Initializable {
     @FXML private TextField endDateTextField;
     @FXML private TextField passwordTextField;
 
+    @FXML private TextField removeEmployeeTextField;
+
     ObservableList employmentTypeBox = FXCollections.observableArrayList();
     ObservableList statusBox = FXCollections.observableArrayList();
     ObservableList departmentBox = FXCollections.observableArrayList();
@@ -55,10 +56,28 @@ public class AdminScreenController implements Initializable {
     @FXML private ChoiceBox<String> level;
     @FXML private ChoiceBox<String> experience;
 
-
+    @FXML private TableView<Contacts> userTable;
+    @FXML private TableColumn<Contacts, String> ssnColumn;
+    @FXML private TableColumn<Contacts, String> firstNameColumn;
+    @FXML private TableColumn<Contacts, String> lastNameColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        try{
+
+            ssnColumn.setCellValueFactory(new PropertyValueFactory<Contacts, String>("ssn"));
+            firstNameColumn.setCellValueFactory(new PropertyValueFactory<Contacts, String>("name"));
+            lastNameColumn.setCellValueFactory(new PropertyValueFactory<Contacts, String>("lastName"));
+
+            userTable.setItems(getContacts());
+
+        }catch(SQLException a){
+            System.out.println("Error");
+        }catch(NullPointerException s){
+            System.out.println("Second error");
+        }
+
         loadData();
     }
 
@@ -76,8 +95,9 @@ public class AdminScreenController implements Initializable {
     }
 
     @FXML
-    public void removeEmoployeeButton(ActionEvent event){
-
+    public void removeEmployeeButton(ActionEvent event) throws SQLException{
+        DatabaseC.getInstance().removeEmployee(removeEmployeeTextField.getText());
+        userTable.setItems(getContacts());
     }
 
     public void viewEmployeeButton(ActionEvent event){
@@ -134,6 +154,14 @@ public class AdminScreenController implements Initializable {
         experienceBox.addAll(junior,senior);
         experience.getItems().addAll(experienceBox);
 
+    }
+
+    public ObservableList<Contacts> getContacts() throws SQLException{
+        ObservableList<Contacts> contacts = FXCollections.observableArrayList();
+        for(int i = 0; i<DatabaseC.getInstance().getContacts().size(); i++){
+            contacts.add(DatabaseC.getInstance().getContacts().get(i));
+        }
+        return contacts;
     }
 
     public void SignOut(javafx.event.ActionEvent event) throws IOException {

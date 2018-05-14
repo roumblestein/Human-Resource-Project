@@ -5,12 +5,22 @@ public class Contacts {
     private String lastName;
     private String email;
     private String phone;
+    private String ssn;
 
-    public Contacts(String name, String lastName, String email, String phone) {
+    public Contacts(String name, String lastName, String email, String phone, String ssn) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+        this.ssn = ssn;
+    }
+
+    public String getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
     }
 
     public String getName() {
@@ -52,6 +62,7 @@ public class Contacts {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", ssn='" + ssn + '\'' +
                 '}';
     }
 }

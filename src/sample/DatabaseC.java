@@ -97,10 +97,10 @@ public class DatabaseC {
 
     public ArrayList<Contacts> getContacts() throws SQLException{
         ArrayList<Contacts> contacts = new ArrayList<>();
-        PreparedStatement users = c.prepareStatement("Select Name, Lastname, Email, PhoneNr from userlogin, `personal phone` where userlogin_SSN = SSN");
+        PreparedStatement users = c.prepareStatement("Select Name, Lastname, Email, PhoneNr, SSN from userlogin, `personal phone` where userlogin_SSN = SSN");
         ResultSet rs = users.executeQuery();
         while(rs.next()){
-            contacts.add(new Contacts(rs.getString("Name"), rs.getString("Lastname"), rs.getString("Email"), rs.getString("PhoneNr")));
+            contacts.add(new Contacts(rs.getString("Name"), rs.getString("Lastname"), rs.getString("Email"), rs.getString("PhoneNr"), rs.getString("SSN")));
         }
         return contacts;
     }
@@ -172,7 +172,17 @@ public class DatabaseC {
         addPersonalInformation.close();
     }
 
-
+    public void removeEmployee(String user) throws SQLException{
+        PreparedStatement a = c.prepareStatement("Delete from userlogin_has_skills where userlogin_SSN ='"+user+"'");
+        PreparedStatement a1 = c.prepareStatement("Delete from `personal phone` where userlogin_SSN = '"+user+"'");
+        PreparedStatement b = c.prepareStatement("Delete from userlogin where SSN = '"+user+"'");
+        a.executeUpdate();
+        a.close();
+        a1.executeUpdate();
+        a1.close();
+        b.executeUpdate();
+        b.close();
+    }
 
 
 
