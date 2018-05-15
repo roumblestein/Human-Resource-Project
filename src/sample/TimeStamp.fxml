@@ -3,20 +3,35 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TimeStampController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TimeStampController">
    <children>
+      <ImageView fitHeight="410.0" fitWidth="547.0" layoutX="-1.0">
+         <image>
+            <Image url="@../Images/Background.jpg" />
+         </image>
+      </ImageView>
       <Button fx:id="checkInButton" layoutX="117.0" layoutY="288.0" mnemonicParsing="false" onAction="#checkIn" opacity="0.99" prefHeight="48.0" prefWidth="129.0" text="Check in">
          <font>
             <Font size="20.0" />
          </font>
+         <effect>
+            <InnerShadow />
+         </effect>
       </Button>
       <Button fx:id="checkOutButton" layoutX="310.0" layoutY="288.0" mnemonicParsing="false" onAction="#checkout" opacity="0.99" prefHeight="48.0" prefWidth="129.0" text="Check out">
          <font>
             <Font size="20.0" />
          </font>
+         <effect>
+            <InnerShadow />
+         </effect>
       </Button>
       <Label fx:id="date" alignment="CENTER" contentDisplay="CENTER" layoutX="206.0" layoutY="108.0" opacity="0.99" prefHeight="22.0" prefWidth="138.0" text="dnwr">
          <font>
@@ -28,16 +43,25 @@
             <Font size="50.0" />
          </font>
       </Label>
-      <Button fx:id="logOut" layoutX="14.0" layoutY="362.0" mnemonicParsing="false" onAction="#signOutButton" opacity="0.99" prefHeight="34.0" prefWidth="89.0" text="&lt;&lt; back" />
+      <Button fx:id="logOut" layoutX="14.0" layoutY="362.0" mnemonicParsing="false" onAction="#signOutButton" opacity="0.99" prefHeight="34.0" prefWidth="89.0" text="&lt;&lt; back">
+         <effect>
+            <InnerShadow />
+         </effect></Button>
       <TextField fx:id="checkIn" alignment="CENTER" editable="false" layoutX="166.0" layoutY="145.0" prefHeight="39.0" prefWidth="215.0">
          <font>
             <Font size="20.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </TextField>
       <TextField fx:id="checkOut" alignment="CENTER" editable="false" layoutX="166.0" layoutY="205.0" prefHeight="39.0" prefWidth="215.0">
          <font>
             <Font size="20.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </TextField>
    </children>
 </AnchorPane>
