@@ -1,5 +1,8 @@
 package sample;
 
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.ColumnText;
+import com.itextpdf.text.pdf.PdfWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +16,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -59,6 +64,8 @@ public class AdminScreenController implements Initializable {
     @FXML private TextField editPasswordTextField;
     @FXML private TextField editAccessTextField;
     @FXML private TextField removeEmployeeTextField;
+
+    @FXML private TextField requestedReportMonth;
 
     ObservableList employmentTypeBox = FXCollections.observableArrayList();
     ObservableList statusBox = FXCollections.observableArrayList();
@@ -159,8 +166,37 @@ public class AdminScreenController implements Initializable {
 
     }
 
-    public void reportsButton(ActionEvent event){
+    @FXML
+    public void reportsButton(ActionEvent event) throws SQLException{
 
+        String emp = removeEmployeeTextField.getText();
+        String month = requestedReportMonth.getText();
+        employment = DatabaseC.getInstance().getEmploymentInformation(emp);
+        int salary = Integer.parseInt(employment.getSalary());
+        int hours = DatabaseC.getInstance().totalHours(month,emp);
+
+
+        String companyName = "Your company\nFinance Department\nBaker Street 221b\n";
+        String title    = "----------------------------SalaryReport-----------------------------\n\n";
+        String fillers2 = "----------------------------------------------------------------------------";
+        String description = "Description";
+        String hs = "Hours";
+        String amount = "Amount";
+
+        Document report = new Document(PageSize.A4);
+
+        try{
+            PdfWriter.getInstance(report, new FileOutputStream("SalaryReport.pdf"));
+            report.open();
+            report.add(new Paragraph(companyName));
+            report.add(new Paragraph(title, FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD, BaseColor.BLUE)));
+            report.add(new Paragraph(fillers2,FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD, BaseColor.BLACK)));
+            report.add(new Paragraph(String.format("%-60s %-60s %-60s", description,hs,amount)));
+            report.add(new Paragraph(String.format("%-63s %-63s %-60s", "Salary", hours,hours*salary)));
+        }catch(Exception s){
+            System.out.println("Error");
+        }
+        report.close();
     }
 
     public void loadUserInfo() throws SQLException{
