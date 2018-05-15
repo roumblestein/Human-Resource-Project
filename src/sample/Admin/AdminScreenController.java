@@ -306,7 +306,7 @@ public class AdminScreenController implements Initializable {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginSample.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/Login/LoginSample.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
