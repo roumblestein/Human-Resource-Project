@@ -72,6 +72,14 @@ public class forgotPassword implements Initializable {
             SecureRandom rand = new SecureRandom();
             randomNumber = rand.nextInt(9000) + 1000;
 
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+            dialog.setTitle("INFORMATION");
+            dialog.setHeaderText("4 digit code ");
+            dialog.setContentText("You have gotten a 4 digit code on your email." +
+                    " " +
+                    "Enter it below!");
+            dialog.showAndWait();
+
             String to = DatabaseC.getInstance().getEmail();
             String from = "humanresourceprojecthkr@gmail.com";
             Properties properties = new Properties();
@@ -80,9 +88,11 @@ public class forgotPassword implements Initializable {
             properties.put("mail.smtp.host", "smtp.gmail.com");
             properties.put("mail.smtp.port", 587);
             Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication("humanresourceprojecthkr@gmail.com", "hrproject");
+
                 }
             });
 
@@ -98,13 +108,14 @@ public class forgotPassword implements Initializable {
         } else {
             Alert dialog = new Alert(Alert.AlertType.ERROR);
             dialog.setTitle("ERROR");
-            dialog.setHeaderText("Some error ");
-            dialog.setContentText("error");
+            dialog.setHeaderText("Wrong SSN ");
+            dialog.setContentText("Please enter a valid SSN");
             dialog.show();
         }
     }
 
     public void newPassButton(ActionEvent event) throws IOException {
+
         if (Integer.parseInt(emailCode.getText()) == randomNumber) {
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
