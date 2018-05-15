@@ -35,13 +35,10 @@ public class CalenderController implements Initializable {
     private Text day1,day2,day3,day4,day5,day6,day7,day8,day9,day10,day11,day12,day13,day14,day15,day16,day17,day18,day19,day20,day21,day22,day23,day24,day25,day26,day27,day28,day29,day30,day31,day32,day33,day34,day35;
 
     @FXML
-    private Text testText, text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16,text17,text18,text19,text20,text21,text22,text23,text24,text25,text26,text27,text28,text29,text30,text31,text32,text33,text34,text35;
+    private Text text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16,text17,text18,text19,text20,text21,text22,text23,text24,text25,text26,text27,text28,text29,text30,text31,text32,text33,text34,text35;
 
     @FXML
     private Rectangle box1,box2,box3,box4,box5,box6,box7,box8,box9,box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,box20,box21,box22,box23,box24,box25,box26,box27,box28,box29,box30,box31,box32,box33,box34,box35;
-
-    @FXML
-    private AnchorPane primaryPane;
 
     @FXML
     private Label currentMonth;
@@ -259,13 +256,6 @@ public class CalenderController implements Initializable {
         workTimes.add(text33);
         workTimes.add(text34);
         workTimes.add(text35);
-
-
-
-
-
-
-
     }
     public void daysInMonth (){
         if (month == 0){
