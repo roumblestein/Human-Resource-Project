@@ -177,7 +177,8 @@ public class AdminScreenController implements Initializable {
 
 
         String companyName = "Your company\nFinance Department\nBaker Street 221b\n";
-        String title    = "----------------------------SalaryReport-----------------------------\n\n";
+        String title    = "----------------------------SalaryReport-----------------------------\n" +
+                          "                                      2018-"+requestedReportMonth.getText();
         String fillers2 = "----------------------------------------------------------------------------";
         String description = "Description";
         String hs = "Hours";

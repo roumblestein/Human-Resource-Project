@@ -34,7 +34,7 @@
                         <Button layoutX="99.0" layoutY="206.0" mnemonicParsing="false" onAction="#removeEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Remove" />
                         <Button layoutX="169.0" layoutY="152.0" mnemonicParsing="false" onAction="#editEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Edit" />
                         <Button layoutX="45.0" layoutY="152.0" mnemonicParsing="false" onAction="#viewEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="View" />
-                        <Button layoutX="323.0" layoutY="152.0" mnemonicParsing="false" onAction="#viewEmployeeButton" prefHeight="25.0" prefWidth="139.0" text="Generate Salary Report" />
+                        <Button layoutX="323.0" layoutY="152.0" mnemonicParsing="false" onAction="#reportsButton" prefHeight="25.0" prefWidth="139.0" text="Generate Salary Report" />
                         <TextField fx:id="requestedReportMonth" layoutX="325.0" layoutY="98.0" prefHeight="25.0" prefWidth="138.0" promptText="Enter month here" />
                         <Text layoutX="360.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter month" />
                      </children></AnchorPane>
