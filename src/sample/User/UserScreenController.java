@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import sample.Database.DatabaseC;
@@ -25,6 +27,7 @@ import sample.User.User;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 /**
@@ -64,6 +67,9 @@ public class UserScreenController implements Initializable {
     @FXML private TableColumn<Contacts, String> phoneColumn;
     @FXML private TableColumn<Contacts, String> emailColumn;
     /*END Contacts variables */
+
+    @FXML
+    private Circle checkTimestamp;
 
     public static User currentUser;
     public static Employment currentUserEmployment;
@@ -106,6 +112,27 @@ public class UserScreenController implements Initializable {
             employmentTable.setItems(getEmployment());
             skillsTable.setItems(getSkills());
             contactsTable.setItems(getContacts());
+
+            String workDate;
+            Calendar calendar = Calendar.getInstance();
+            String day = String.valueOf(calendar.get(Calendar.DATE));
+            String month = String.valueOf(calendar.get(Calendar.MONTH)+1);
+            int year = calendar.get(Calendar.YEAR);
+            if (calendar.get(Calendar.DATE) < 10){
+                day = "0"+day;
+            }if (calendar.get(Calendar.MONTH) < 10){
+                month = "0"+month;
+            }
+
+            workDate = year+ "-"+month+"-"+day;
+            if (!DatabaseC.getInstance().checkedIn(workDate) && !DatabaseC.getInstance().workDayOver(workDate)){
+                checkTimestamp.setFill(Paint.valueOf("#ff0000"));
+            }else if (DatabaseC.getInstance().checkedIn(workDate) && !DatabaseC.getInstance().workDayOver(workDate)){
+                checkTimestamp.setFill(Paint.valueOf("#f4ff00"));
+            }else if (DatabaseC.getInstance().checkedIn(workDate) && DatabaseC.getInstance().workDayOver(workDate)){
+                checkTimestamp.setFill(Paint.valueOf("#1dff00"));
+            }
+
 
         }catch(SQLException s){
             System.out.println("Could not connect to database");

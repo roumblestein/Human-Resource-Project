@@ -81,11 +81,11 @@ public class Login implements Initializable {
 
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
-                        Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+                       /* Alert dialog = new Alert(Alert.AlertType.INFORMATION);
                         dialog.setTitle("INFORMATION");
                         dialog.setHeaderText("Don't forget the Time Stamp");
                         dialog.setContentText("Always use the Time Stamp when you start working !");
-                        dialog.showAndWait();
+                        dialog.showAndWait();*/
 
                     }else if(DatabaseC.getInstance().checkAccess(SsnText.getText())){
                         currentUserSsn = SsnText.getText();
