@@ -121,8 +121,8 @@ public class DatabaseC {
         a.close();
     }
 
-    public int totalHours (String month) throws SQLException {
-        PreparedStatement statement = c.prepareStatement("SELECT  Start, Stop from timestamp where userlogin_SSN = '"+SSN+ "' AND `Working day` LIKE '2018-"+month+"-%' order by `Working day` +1");
+    public int totalHours (String month, String ssn) throws SQLException {
+        PreparedStatement statement = c.prepareStatement("SELECT  Start, Stop from timestamp where userlogin_SSN = '"+ssn+ "' AND `Working day` LIKE '2018-"+month+"-%' order by `Working day` +1");
         ResultSet rs = statement.executeQuery();
 
         String startTime = "";
@@ -323,8 +323,6 @@ public class DatabaseC {
             PreparedStatement st = c.prepareStatement("INSERT INTO timestamp (userlogin_SSN, Start, Stop, `Working day`, checkedIn, workDayOver) VALUES ('"+SSN+"',null,null,'"+date+"', 0,0)");
             st.execute();
         }
-
-
     }
 
 
