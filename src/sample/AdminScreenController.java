@@ -1,7 +1,6 @@
 package sample;
 
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -177,7 +175,8 @@ public class AdminScreenController implements Initializable {
 
 
         String companyName = "Your company\nFinance Department\nBaker Street 221b\n";
-        String title    = "----------------------------SalaryReport-----------------------------\n\n";
+        String title    = "----------------------------SalaryReport-----------------------------\n" +
+                          "                                      2018-"+requestedReportMonth.getText();
         String fillers2 = "----------------------------------------------------------------------------";
         String description = "Description";
         String hs = "Hours";

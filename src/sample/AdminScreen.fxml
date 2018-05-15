@@ -7,9 +7,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
@@ -17,15 +14,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="867.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AdminScreenController">
 
    <children>
-      <ImageView fitHeight="513.0" fitWidth="892.0">
-         <image>
-            <Image url="@../Images/Skärmklipp.PNG" />
-         </image>
-      </ImageView>
-      <Button fx:id="logOut" layoutX="23.0" layoutY="404.0" mnemonicParsing="false" onAction="#SignOut" prefHeight="34.0" prefWidth="89.0" text="Sign out">
-         <effect>
-            <InnerShadow />
-         </effect></Button>
+      <Button fx:id="logOut" layoutX="23.0" layoutY="404.0" mnemonicParsing="false" onAction="#SignOut" prefHeight="34.0" prefWidth="89.0" text="Sign out" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="372.0" layoutX="23.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" width="821.0" />
       <TabPane fx:id="adminTabPane" layoutX="23.0" layoutY="21.0" prefHeight="372.0" prefWidth="821.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -33,11 +22,6 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="390.0" fitWidth="559.0" layoutX="-20.0" layoutY="-48.0">
-                           <image>
-                              <Image url="@../Images/Background.jpg" />
-                           </image>
-                        </ImageView>
                         <TableView fx:id="userTable" layoutX="533.0" prefHeight="342.0" prefWidth="287.0">
                           <columns>
                             <TableColumn fx:id="ssnColumn" prefWidth="98.0" text="SSN" />
@@ -47,22 +31,10 @@
                         </TableView>
                         <TextField fx:id="removeEmployeeTextField" layoutX="58.0" layoutY="98.0" prefHeight="25.0" prefWidth="184.0" promptText="Enter SSN here" />
                         <Text layoutX="96.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter employee SSN" />
-                        <Button layoutX="99.0" layoutY="206.0" mnemonicParsing="false" onAction="#removeEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Remove">
-                           <effect>
-                              <InnerShadow />
-                           </effect></Button>
-                        <Button layoutX="169.0" layoutY="152.0" mnemonicParsing="false" onAction="#editEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Edit">
-                           <effect>
-                              <InnerShadow />
-                           </effect></Button>
-                        <Button layoutX="45.0" layoutY="152.0" mnemonicParsing="false" onAction="#viewEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="View">
-                           <effect>
-                              <InnerShadow />
-                           </effect></Button>
-                        <Button layoutX="323.0" layoutY="152.0" mnemonicParsing="false" onAction="#reportsButton" prefHeight="25.0" prefWidth="139.0" text="Generate Salary Report">
-                           <effect>
-                              <InnerShadow />
-                           </effect></Button>
+                        <Button layoutX="99.0" layoutY="206.0" mnemonicParsing="false" onAction="#removeEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Remove" />
+                        <Button layoutX="169.0" layoutY="152.0" mnemonicParsing="false" onAction="#editEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Edit" />
+                        <Button layoutX="45.0" layoutY="152.0" mnemonicParsing="false" onAction="#viewEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="View" />
+                        <Button layoutX="323.0" layoutY="152.0" mnemonicParsing="false" onAction="#reportsButton" prefHeight="25.0" prefWidth="139.0" text="Generate Salary Report" />
                         <TextField fx:id="requestedReportMonth" layoutX="325.0" layoutY="98.0" prefHeight="25.0" prefWidth="138.0" promptText="Enter month here" />
                         <Text layoutX="360.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter month" />
                      </children></AnchorPane>
