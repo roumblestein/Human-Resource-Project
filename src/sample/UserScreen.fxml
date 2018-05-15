@@ -17,12 +17,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.UserScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.UserScreenController">
 
    <children>
       <ImageView fitHeight="427.0" fitWidth="848.0" pickOnBounds="true">
          <image>
-            <Image url="@../Images/Background.jpg" />
+            <Image url="@../Images/images3.jpg" />
          </image>
       </ImageView>
       <TabPane layoutX="116.0" layoutY="14.0" prefHeight="330.0" prefWidth="665.0" tabClosingPolicy="UNAVAILABLE">
@@ -179,5 +179,10 @@
          </image>
       </ImageView>
       <Button fx:id="calenderButton" layoutX="19.0" layoutY="139.0" mnemonicParsing="false" onAction="#calenderButton" opacity="0.0" prefHeight="80.0" prefWidth="80.0" text="Button" />
+      <ImageView fitHeight="54.0" fitWidth="709.0" layoutX="102.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Report/skörm.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
