@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TimeStampController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Timestamp.TimeStampController">
    <children>
       <ImageView fitHeight="410.0" fitWidth="555.0" layoutX="-6.0">
          <image>
-            <Image url="@../Images/images2.jpg" />
+            <Image url="@../../Images/images2.jpg" />
          </image>
       </ImageView>
       <Button fx:id="checkInButton" layoutX="117.0" layoutY="288.0" mnemonicParsing="false" onAction="#checkIn" opacity="0.99" prefHeight="48.0" prefWidth="129.0" text="Check in">

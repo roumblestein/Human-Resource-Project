@@ -1,4 +1,4 @@
-package sample;
+package sample.InformationClasses;
 
 public class Contacts {
     private String name;

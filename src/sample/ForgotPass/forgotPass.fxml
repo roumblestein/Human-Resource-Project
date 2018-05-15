@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.forgotPassword">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ForgotPass.forgotPassword">
    <children>
       <ImageView fitHeight="300.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/Skärmklipp.PNG" />
+            <Image url="@../../Images/Skärmklipp.PNG" />
          </image>
       </ImageView>
       <Button fx:id="resetPass" layoutX="105.0" layoutY="202.0" mnemonicParsing="false" onAction="#newPassButton" prefHeight="39.0" prefWidth="154.0" text="Reset password">

@@ -1,4 +1,4 @@
-package sample;
+package sample.Timestamp;
 
 import java.util.Date;
 

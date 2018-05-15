@@ -1,4 +1,4 @@
-package sample;
+package sample.Admin;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -14,6 +14,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import sample.InformationClasses.Contacts;
+import sample.Database.DatabaseC;
+import sample.InformationClasses.Employment;
+import sample.InformationClasses.Skills;
+import sample.User.User;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

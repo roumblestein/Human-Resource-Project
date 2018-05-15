@@ -1,4 +1,4 @@
-package sample;
+package sample.User;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

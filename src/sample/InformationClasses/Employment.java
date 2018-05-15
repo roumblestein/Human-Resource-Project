@@ -1,4 +1,4 @@
-package sample;
+package sample.InformationClasses;
 
 /**
  * Created by Shpat on 2018-04-22.

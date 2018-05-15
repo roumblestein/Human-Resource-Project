@@ -1,4 +1,4 @@
-package sample;
+package sample.User;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,15 +14,17 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
+import sample.Database.DatabaseC;
+import sample.InformationClasses.Contacts;
+import sample.InformationClasses.Employment;
+import sample.InformationClasses.Skills;
+import sample.Login.Login;
+import sample.User.User;
 
 
-import javax.xml.soap.Text;
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -137,7 +139,7 @@ public class UserScreenController implements Initializable {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginSample.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/Login/LoginSample.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
@@ -149,7 +151,7 @@ public class UserScreenController implements Initializable {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TimeStamp.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/Timestamp/TimeStamp.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
@@ -160,7 +162,7 @@ public class UserScreenController implements Initializable {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Calender.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/Calender/Calender.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);

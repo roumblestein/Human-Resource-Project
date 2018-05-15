@@ -1,6 +1,7 @@
-package sample;
+package sample.Login;
 
-import com.sun.javafx.css.Stylesheet;
+import javafx.fxml.Initializable;
+
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -14,11 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.w3c.dom.css.CSSStyleSheet;
-import org.w3c.dom.stylesheets.StyleSheet;
-import org.w3c.dom.stylesheets.StyleSheetList;
+import sample.Database.DatabaseC;
 
-import javax.jws.soap.SOAPBinding;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
@@ -78,7 +76,7 @@ public class Login implements Initializable {
                         Node node = (Node) event.getSource();
                         Stage stage = (Stage) node.getScene().getWindow();
 
-                        FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("UserScreen.fxml"));
+                        FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("/sample/User/UserScreen.fxml"));
                         Parent root = FxmlLoader.load();
 
                         Scene scene = new Scene(root);
@@ -94,7 +92,7 @@ public class Login implements Initializable {
                         Node node = (Node) event.getSource();
                         Stage stage = (Stage) node.getScene().getWindow();
 
-                        FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("AdminScreen.fxml"));
+                        FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("/sample/Admin/AdminScreen.fxml"));
                         Parent root = FxmlLoader.load();
 
                         Scene scene = new Scene(root);
@@ -118,7 +116,7 @@ public class Login implements Initializable {
     public void forgotButton(ActionEvent event) throws IOException {
 
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("forgotPass.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/sample/ForgotPass/forgotPass.fxml"));
         stage.setTitle("New password");
         stage.setScene(new Scene(root));
         stage.show();

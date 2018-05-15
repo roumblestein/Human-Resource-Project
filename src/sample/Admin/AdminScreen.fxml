@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="867.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AdminScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="867.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Admin.AdminScreenController">
 
    <children>
       <Button fx:id="logOut" layoutX="23.0" layoutY="404.0" mnemonicParsing="false" onAction="#SignOut" prefHeight="34.0" prefWidth="91.0" text="Sign out">
@@ -31,7 +31,7 @@
                      <children>
                         <ImageView fitHeight="343.0" fitWidth="532.0" layoutX="1.0">
                            <image>
-                              <Image url="@../Images/adminImage.png" />
+                              <Image url="@../../Images/adminImage.png" />
                            </image>
                         </ImageView>
                         <TableView fx:id="userTable" layoutX="533.0" prefHeight="342.0" prefWidth="287.0" style="-fx-background-color: lightblue;">
@@ -76,7 +76,7 @@
                      <children>
                         <ImageView fitHeight="344.0" fitWidth="821.0">
                            <image>
-                              <Image url="@../Images/adminImage3.png" />
+                              <Image url="@../../Images/adminImage3.png" />
                            </image>
                         </ImageView>
                         <ChoiceBox fx:id="skillCategory" layoutX="418.0" layoutY="27.0" prefWidth="150.0" />
@@ -116,7 +116,7 @@
                      <children>
                         <ImageView fitHeight="343.0" fitWidth="532.0">
                            <image>
-                              <Image url="@../Images/adminImage2.png" />
+                              <Image url="@../../Images/adminImage2.png" />
                            </image>
                         </ImageView>
                         <TextField fx:id="editAdressTextField" layoutX="50.0" layoutY="279.0" promptText="Address" />
@@ -151,7 +151,7 @@
       </TabPane>
       <ImageView fitHeight="455.0" fitWidth="867.0" layoutY="-1.0">
          <image>
-            <Image url="@../Images/adminImage1.png" />
+            <Image url="@../../Images/adminImage1.png" />
          </image>
       </ImageView>
    </children>
