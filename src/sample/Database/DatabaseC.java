@@ -1,10 +1,12 @@
-package sample;
+package sample.Database;
 
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-
-import javax.xml.transform.Result;
+import sample.Calender.CalenderBoxes;
+import sample.InformationClasses.Contacts;
+import sample.InformationClasses.Employment;
+import sample.InformationClasses.Skills;
+import sample.Timestamp.TimeStamp;
+import sample.User.User;
 
 import java.sql.*;
 import java.util.ArrayList;

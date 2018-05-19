@@ -16,11 +16,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Login">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Login.Login">
    <children>
       <ImageView fitHeight="410.0" fitWidth="659.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/Background.jpg" />
+            <Image url="@../../Images/Background.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="136.0" layoutY="68.0" prefHeight="278.0" prefWidth="289.0" style="-fx-border-color: black;">
@@ -64,7 +64,7 @@
       <Label fx:id="ssnw" layoutX="263.0" layoutY="263.0" prefHeight="26.0" prefWidth="277.0" textFill="RED" underline="true" wrapText="true" />
       <ImageView fitHeight="100.0" fitWidth="73.0" layoutX="34.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/user.png" />
+            <Image url="@../../Images/user.png" />
          </image>
       </ImageView>
       <CheckBox fx:id="checkBox" layoutX="158.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleCheckBox" prefHeight="27.0" prefWidth="122.0" text="Remember me" />

@@ -1,4 +1,4 @@
-package sample;
+package sample.User;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,17 +12,22 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
+import sample.Database.DatabaseC;
+import sample.InformationClasses.Contacts;
+import sample.InformationClasses.Employment;
+import sample.InformationClasses.Skills;
+import sample.Login.Login;
+import sample.User.User;
 
 
-import javax.xml.soap.Text;
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 /**
@@ -62,6 +67,9 @@ public class UserScreenController implements Initializable {
     @FXML private TableColumn<Contacts, String> phoneColumn;
     @FXML private TableColumn<Contacts, String> emailColumn;
     /*END Contacts variables */
+
+    @FXML
+    private Circle checkTimestamp;
 
     public static User currentUser;
     public static Employment currentUserEmployment;
@@ -105,6 +113,27 @@ public class UserScreenController implements Initializable {
             skillsTable.setItems(getSkills());
             contactsTable.setItems(getContacts());
 
+            String workDate;
+            Calendar calendar = Calendar.getInstance();
+            String day = String.valueOf(calendar.get(Calendar.DATE));
+            String month = String.valueOf(calendar.get(Calendar.MONTH)+1);
+            int year = calendar.get(Calendar.YEAR);
+            if (calendar.get(Calendar.DATE) < 10){
+                day = "0"+day;
+            }if (calendar.get(Calendar.MONTH) < 10){
+                month = "0"+month;
+            }
+
+            workDate = year+ "-"+month+"-"+day;
+            if (!DatabaseC.getInstance().checkedIn(workDate) && !DatabaseC.getInstance().workDayOver(workDate)){
+                checkTimestamp.setFill(Paint.valueOf("#ff0000"));
+            }else if (DatabaseC.getInstance().checkedIn(workDate) && !DatabaseC.getInstance().workDayOver(workDate)){
+                checkTimestamp.setFill(Paint.valueOf("#f4ff00"));
+            }else if (DatabaseC.getInstance().checkedIn(workDate) && DatabaseC.getInstance().workDayOver(workDate)){
+                checkTimestamp.setFill(Paint.valueOf("#1dff00"));
+            }
+
+
         }catch(SQLException s){
             System.out.println("Could not connect to database");
         }catch(NullPointerException a){
@@ -137,7 +166,7 @@ public class UserScreenController implements Initializable {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginSample.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/Login/LoginSample.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
@@ -149,7 +178,7 @@ public class UserScreenController implements Initializable {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TimeStamp.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/Timestamp/TimeStamp.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
@@ -160,7 +189,7 @@ public class UserScreenController implements Initializable {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Calender.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/Calender/Calender.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);

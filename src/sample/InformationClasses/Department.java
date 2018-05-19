@@ -1,4 +1,4 @@
-package sample;
+package sample.InformationClasses;
 
 import java.util.ArrayList;
 

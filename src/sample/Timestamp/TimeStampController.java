@@ -1,4 +1,4 @@
-package sample;
+package sample.Timestamp;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -13,19 +13,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import sample.Database.DatabaseC;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.net.URL;
-import java.security.SecureRandom;
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class TimeStampController implements Initializable {
@@ -131,7 +126,7 @@ public class TimeStampController implements Initializable {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/User/UserScreen.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);

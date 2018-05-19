@@ -1,4 +1,6 @@
-package sample;
+package sample.Login;
+
+import javafx.fxml.Initializable;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.Database.DatabaseC;
+
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -70,23 +74,23 @@ public class Login implements Initializable {
                         Node node = (Node) event.getSource();
                         Stage stage = (Stage) node.getScene().getWindow();
 
-                        FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("UserScreen.fxml"));
+                        FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("/sample/User/UserScreen.fxml"));
                         Parent root = FxmlLoader.load();
 
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
-                        Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+                       /* Alert dialog = new Alert(Alert.AlertType.INFORMATION);
                         dialog.setTitle("INFORMATION");
                         dialog.setHeaderText("Don't forget the Time Stamp");
                         dialog.setContentText("Always use the Time Stamp when you start working !");
-                        dialog.showAndWait();
+                        dialog.showAndWait();*/
 
                     }else if(DatabaseC.getInstance().checkAccess(SsnText.getText())){
                         currentUserSsn = SsnText.getText();
                         Node node = (Node) event.getSource();
                         Stage stage = (Stage) node.getScene().getWindow();
 
-                        FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("AdminScreen.fxml"));
+                        FXMLLoader FxmlLoader = new FXMLLoader(getClass().getResource("/sample/Admin/AdminScreen.fxml"));
                         Parent root = FxmlLoader.load();
 
                         Scene scene = new Scene(root);
@@ -110,7 +114,7 @@ public class Login implements Initializable {
     public void forgotButton(ActionEvent event) throws IOException {
 
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("forgotPass.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/sample/ForgotPass/forgotPass.fxml"));
         stage.setTitle("New password");
         stage.setScene(new Scene(root));
         stage.show();
