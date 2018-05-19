@@ -131,7 +131,13 @@ public class AdminScreenController implements Initializable {
         Skills skills = new Skills("1", skill.getValue(),level.getValue(), experience.getValue(), "5");
 
         DatabaseC.getInstance().addEmployee(newUser,employment,skills);
-    }
+        Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+        dialog.setTitle("INFORMATION");
+        dialog.setHeaderText("Employee created!");
+        dialog.setContentText("New employee: "+firstNameTextField.getText() +" "+ lastNameTextField.getText() );
+        dialog.showAndWait();
+        userTable.setItems(getContacts());
+}
 
     @FXML
     public void removeEmployeeButton(ActionEvent event) throws SQLException{
@@ -150,6 +156,7 @@ public class AdminScreenController implements Initializable {
         adminTabPane.getSelectionModel().select(editEmployeeTab);
         setTextFieldAccess(false);
         loadUserInfo();
+        userTable.setItems(getContacts());
     }
 
     public void saveEditsButton() throws SQLException{
