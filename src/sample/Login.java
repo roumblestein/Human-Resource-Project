@@ -1,8 +1,6 @@
 package sample;
 
-import com.sun.javafx.css.Stylesheet;
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,11 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.w3c.dom.css.CSSStyleSheet;
-import org.w3c.dom.stylesheets.StyleSheet;
-import org.w3c.dom.stylesheets.StyleSheetList;
 
-import javax.jws.soap.SOAPBinding;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
@@ -64,8 +58,6 @@ public class Login implements Initializable {
     public void loginButton(ActionEvent event) throws IOException, SQLException {
         writeRememberMe();
         try {
-
-
             if (SsnText.getText().isEmpty() || PasswordText.getText().isEmpty()) {
                 ssnw.setText("Enter details in empty fields!");
                 Toolkit.getDefaultToolkit().beep();
@@ -157,11 +149,10 @@ public class Login implements Initializable {
 
     /*Saves Ssn in a file*/
 
+
     private void writeRememberMe() throws IOException {
         File file = new File("user.txt");
-        // if (!file.exists()) {
-        //     file.createNewFile();
-        // }
+
 
         Path path = Paths.get("user.txt");
 
