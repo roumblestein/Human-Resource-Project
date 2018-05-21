@@ -154,7 +154,7 @@ public class AdminScreenController implements Initializable {
             System.out.println("Employee added test 121212");
 
             User newUser = new User(ssnTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(),
-                    adressTextField.getText(), phoneTextField.getText(), "1", passwordTextField.getText(), "User");
+                    phoneTextField.getText(), adressTextField.getText(), "1", passwordTextField.getText(), "User");
 
 
             Employment employment = new Employment(salaryTextField.getText(), employmentType.getValue(), status.getValue(),
@@ -236,9 +236,15 @@ public class AdminScreenController implements Initializable {
         error.setTitle("Wrong input");
         error.setHeaderText("Input error");
 
+        Alert info = new Alert(Alert.AlertType.INFORMATION);
+        info.setTitle("Information");
+        info.setHeaderText("A report has been generated, check parent folder.");
+
         if(removeEmployeeTextField.getText().matches("\\d{6}-\\d{4}")){
             DatabaseC.getInstance().removeEmployee(removeEmployeeTextField.getText());
             userTable.setItems(getContacts());
+            info.showAndWait();
+
         }else if(!removeEmployeeTextField.getText().matches("\\d{6}-\\d{4}")){
             error.setContentText("Input SSN in this format: 'NNNNNN-NNNN'");
             error.showAndWait();
@@ -285,6 +291,10 @@ public class AdminScreenController implements Initializable {
         error.setTitle("Wrong input");
         error.setHeaderText("Input error");
 
+        Alert info = new Alert(Alert.AlertType.INFORMATION);
+        info.setTitle("Information");
+        info.setHeaderText("Edits have been saved.");
+
         if(!editFirstNameTextField.getText().isEmpty() && !editLastNameTextField.getText().isEmpty() && !editEmailTextField.getText().isEmpty()
                 && !editPhoneTextField.getText().isEmpty() && !editAdressTextField.getText().isEmpty() && !editSalaryTextField.getText().isEmpty()
                 && !editStartDateTextField.getText().isEmpty() && !editEndDateTextField.getText().isEmpty() && !editEmploymentTextField.getText().isEmpty()
@@ -302,6 +312,7 @@ public class AdminScreenController implements Initializable {
 
 
             DatabaseC.getInstance().editEmployeeInformation(editedUser,editedEmployment);
+            info.showAndWait();
             System.out.println("edits saved");
 
         }else if(editFirstNameTextField.getText().isEmpty() || editLastNameTextField.getText().isEmpty() || editEmailTextField.getText().isEmpty()
@@ -322,6 +333,10 @@ public class AdminScreenController implements Initializable {
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.setTitle("Wrong input");
         error.setHeaderText("Input error");
+
+        Alert info = new Alert(Alert.AlertType.INFORMATION);
+        info.setTitle("Information");
+        info.setHeaderText("A report has been generated, check parent folder.");
 
         String emp = removeEmployeeTextField.getText();
         String month = requestedReportMonth.getText();
@@ -350,6 +365,7 @@ public class AdminScreenController implements Initializable {
                 report.add(new Paragraph(fillers2,FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD, BaseColor.BLACK)));
                 report.add(new Paragraph(String.format("%-60s %-60s %-60s", description,hs,amount)));
                 report.add(new Paragraph(String.format("%-63s %-63s %-60s", "Salary", hours,hours*salary)));
+                info.showAndWait();
             }catch(Exception s){
                 System.out.println("Error");
             }

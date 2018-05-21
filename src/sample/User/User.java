@@ -17,7 +17,7 @@ public class User {
     //Personal information variables
     private String ssn, name, lastName, email, address, phone1, idDepartment, password, access;
 
-    public User(String ssn, String name, String lastName, String email, String address, String phone1,String idDepartment,String password,String access) {
+    public User(String ssn, String name, String lastName, String email, String phone1, String address, String idDepartment,String password,String access) {
         this.ssn = ssn;
         this.name = name;
         this.lastName = lastName;

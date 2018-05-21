@@ -67,7 +67,7 @@ public class DatabaseC {
             password = rs.getString("Password");
             access = rs.getString("Access");
         }
-        return new User(ssn, firstName, lastName, email, adress, phone1, idDepartment, password,access);
+        return new User(ssn, firstName, lastName, email, phone1,adress, idDepartment, password,access);
     }
 
     String salary, employment, status, employmentDate, lastEmploymentDate;
@@ -202,11 +202,14 @@ public class DatabaseC {
     public void removeEmployee(String user) throws SQLException{
         PreparedStatement a = c.prepareStatement("Delete from userlogin_has_skills where userlogin_SSN ='"+user+"'");
         PreparedStatement a1 = c.prepareStatement("Delete from `personal phone` where userlogin_SSN = '"+user+"'");
+        PreparedStatement a2 = c.prepareStatement("Delete from employment where userlogin_SSN = '"+user+"'");
         PreparedStatement b = c.prepareStatement("Delete from userlogin where SSN = '"+user+"'");
         a.executeUpdate();
         a.close();
         a1.executeUpdate();
         a1.close();
+        a2.executeUpdate();
+        a2.close();
         b.executeUpdate();
         b.close();
     }
