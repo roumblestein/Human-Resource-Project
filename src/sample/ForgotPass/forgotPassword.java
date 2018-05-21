@@ -39,6 +39,8 @@ public class forgotPassword implements Initializable {
     private TextField verifyPass;
     @FXML
     private Label warningForgetP;
+    @FXML
+    private Label warningText;
 
     private int randomNumber;
     private String password;
@@ -130,6 +132,16 @@ public class forgotPassword implements Initializable {
     }
 
     public void createNewPass(ActionEvent event) throws SQLException, IOException {
+
+        password = newPass.getText();
+
+
+       if (!newPass.getText().isEmpty() || !verifyPass.getText().isEmpty()){
+
+           if (newPass.getText().equals(verifyPass.getText())) {
+
+               if (password.length() > 5) {
+
         if (checkPass()) {
                 DatabaseC.getInstance().newPassword(newPass.getText());
 
@@ -140,29 +152,28 @@ public class forgotPassword implements Initializable {
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.close();
-            }
+            }else if (!checkPass()){
 
-        else if (!checkPass()){
-            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
-            dialog.setTitle("INFORMATION");
-            dialog.setHeaderText("Password Safety ");
-            dialog.setContentText("At least 6 characters" +" "+
-                    "At least 1 cap" +
-                    " " +
-                    "At least 1 lower case" +
-                    " " +
-                    "At least 1 number " +
-                    " ");
-            dialog.showAndWait();
+            warningText.setText("Password must consist of:\n" +
+                    "Digits\n" +
+                    "Uppercase letter\n" +
+                    "and lowercase letters");
         }
+               }else {
+                   warningText.setText("Password must consist of more than 5 characters!");
+               }
+           }else {
+            warningText.setText("Passwords doesn't match!");
+           }
+       }else{
+           warningText.setText("Fields are empty! please fill them out");
+       }
+
     }
 
     public boolean checkPass() {
             boolean passwordSafety = false;
-
-
-        if (newPass.getText().equals(verifyPass.getText())) {
-            if (password.length() > 5) {
+            password = newPass.getText();
                 boolean hasNum = false;
                 boolean hasCap = false;
                 boolean hasLow = false;
@@ -182,15 +193,10 @@ public class forgotPassword implements Initializable {
                         passwordSafety = true;
                     }
                 }
-
-            } else {
-                warningForgetP.setText("Use at least 6 characters ");
-                Toolkit.getDefaultToolkit().beep();
-
+              return passwordSafety;
             }
         }
 
 
-       return passwordSafety;
-    }
-}
+
+
