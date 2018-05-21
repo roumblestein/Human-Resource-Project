@@ -45,8 +45,11 @@
                            <effect>
                               <DropShadow />
                            </effect></TextField>
-                        <Text layoutX="96.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter employee SSN" />
-                        <Button layoutX="99.0" layoutY="206.0" mnemonicParsing="false" onAction="#removeEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Remove">
+                        <TextField fx:id="requestedReportMonth" layoutX="325.0" layoutY="98.0" prefHeight="25.0" prefWidth="138.0" promptText="Enter month here">
+                           <effect>
+                              <DropShadow />
+                           </effect></TextField>
+                        <Button layoutX="45.0" layoutY="152.0" mnemonicParsing="false" onAction="#viewEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="View">
                            <effect>
                               <InnerShadow />
                            </effect></Button>
@@ -54,7 +57,7 @@
                            <effect>
                               <InnerShadow />
                            </effect></Button>
-                        <Button layoutX="45.0" layoutY="152.0" mnemonicParsing="false" onAction="#viewEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="View">
+                        <Button layoutX="99.0" layoutY="206.0" mnemonicParsing="false" onAction="#removeEmployeeButton" prefHeight="25.0" prefWidth="102.0" text="Remove">
                            <effect>
                               <InnerShadow />
                            </effect></Button>
@@ -62,10 +65,7 @@
                            <effect>
                               <InnerShadow />
                            </effect></Button>
-                        <TextField fx:id="requestedReportMonth" layoutX="325.0" layoutY="98.0" prefHeight="25.0" prefWidth="138.0" promptText="Enter month here">
-                           <effect>
-                              <DropShadow />
-                           </effect></TextField>
+                        <Text layoutX="96.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter employee SSN" />
                         <Text layoutX="360.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter month" />
                      </children></AnchorPane>
               </content>
@@ -118,14 +118,14 @@
                               <Image url="@../../Images/adminImage2.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="editAdressTextField" layoutX="50.0" layoutY="279.0" promptText="Address" />
-                        <TextField fx:id="editPhoneTextField" layoutX="50.0" layoutY="229.0" promptText="Phone" />
-                        <TextField fx:id="editEmailTextField" layoutX="50.0" layoutY="172.0" promptText="Email" />
-                        <TextField fx:id="editLastNameTextField" layoutX="50.0" layoutY="113.0" promptText="Last Name" />
                         <TextField fx:id="editFirstNameTextField" layoutX="50.0" layoutY="53.0" promptText="First Name" />
-                        <TextField fx:id="editEndDateTextField" layoutX="238.0" layoutY="172.0" promptText="End Date" />
-                        <TextField fx:id="editStartDateTextField" layoutX="238.0" layoutY="113.0" promptText="Start Date" />
+                        <TextField fx:id="editLastNameTextField" layoutX="50.0" layoutY="113.0" promptText="Last Name" />
+                        <TextField fx:id="editEmailTextField" layoutX="50.0" layoutY="172.0" promptText="Email" />
+                        <TextField fx:id="editPhoneTextField" layoutX="50.0" layoutY="229.0" promptText="Phone" />
+                        <TextField fx:id="editAdressTextField" layoutX="50.0" layoutY="279.0" promptText="Address" />
                         <TextField fx:id="editSalaryTextField" layoutX="238.0" layoutY="53.0" promptText="Salary" />
+                        <TextField fx:id="editStartDateTextField" layoutX="238.0" layoutY="113.0" promptText="Start Date" />
+                        <TextField fx:id="editEndDateTextField" layoutX="238.0" layoutY="172.0" promptText="End Date" />
                         <TextField fx:id="editEmploymentTextField" layoutX="238.0" layoutY="228.0" promptText="Employment" />
                         <TextField fx:id="editStatusTextField" layoutX="238.0" layoutY="279.0" promptText="Status" />
                         <TextField fx:id="editPasswordTextField" layoutX="622.0" layoutY="53.0" promptText="Password" />

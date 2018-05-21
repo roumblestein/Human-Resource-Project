@@ -266,6 +266,8 @@ public class AdminScreenController implements Initializable {
         error.setTitle("Wrong input");
         error.setHeaderText("Input error");
 
+
+
         if(removeEmployeeTextField.getText().matches("\\d{6}-\\d{4}")) {
             editEmployeeTab.setDisable(false);
             adminTabPane.getSelectionModel().select(editEmployeeTab);
@@ -279,19 +281,39 @@ public class AdminScreenController implements Initializable {
     }
 
     public void saveEditsButton() throws SQLException{
-        adminTabPane.getSelectionModel().select(manageEmployeeTab);
-        editEmployeeTab.setDisable(true);
-        setTextFieldAccess(true);
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setTitle("Wrong input");
+        error.setHeaderText("Input error");
 
-        User editedUser = new User(removeEmployeeTextField.getText(), editFirstNameTextField.getText(), editLastNameTextField.getText(),
-                editEmailTextField.getText(),editPhoneTextField.getText(), editAdressTextField.getText(),
-                "1", editPasswordTextField.getText(), editAccessTextField.getText());
-        Employment editedEmployment = new Employment(editSalaryTextField.getText(), editEmploymentTextField.getText(),
-                editStatusTextField.getText(), editStartDateTextField.getText(), editEndDateTextField.getText());
+        if(!editFirstNameTextField.getText().isEmpty() && !editLastNameTextField.getText().isEmpty() && !editEmailTextField.getText().isEmpty()
+                && !editPhoneTextField.getText().isEmpty() && !editAdressTextField.getText().isEmpty() && !editSalaryTextField.getText().isEmpty()
+                && !editStartDateTextField.getText().isEmpty() && !editEndDateTextField.getText().isEmpty() && !editEmploymentTextField.getText().isEmpty()
+                && !editStatusTextField.getText().isEmpty() && !editPasswordTextField.getText().isEmpty() && !editAccessTextField.getText().isEmpty()){
+
+            adminTabPane.getSelectionModel().select(manageEmployeeTab);
+            editEmployeeTab.setDisable(true);
+            setTextFieldAccess(true);
+
+            User editedUser = new User(removeEmployeeTextField.getText(), editFirstNameTextField.getText(), editLastNameTextField.getText(),
+                    editEmailTextField.getText(),editPhoneTextField.getText(), editAdressTextField.getText(),
+                    "1", editPasswordTextField.getText(), editAccessTextField.getText());
+            Employment editedEmployment = new Employment(editSalaryTextField.getText(), editEmploymentTextField.getText(),
+                    editStatusTextField.getText(), editStartDateTextField.getText(), editEndDateTextField.getText());
 
 
-        DatabaseC.getInstance().editEmployeeInformation(editedUser,editedEmployment);
-        System.out.println("edits saved");
+            DatabaseC.getInstance().editEmployeeInformation(editedUser,editedEmployment);
+            System.out.println("edits saved");
+
+        }else if(editFirstNameTextField.getText().isEmpty() || editLastNameTextField.getText().isEmpty() || editEmailTextField.getText().isEmpty()
+                || editPhoneTextField.getText().isEmpty() || editAdressTextField.getText().isEmpty() || editSalaryTextField.getText().isEmpty()
+                || editStartDateTextField.getText().isEmpty() || editEndDateTextField.getText().isEmpty() || editEmploymentTextField.getText().isEmpty()
+                || editStatusTextField.getText().isEmpty() || editPasswordTextField.getText().isEmpty() || editAccessTextField.getText().isEmpty()){
+
+            error.setContentText("Fill in all the blanks");
+            error.showAndWait();
+        }
+
+
 
     }
 
