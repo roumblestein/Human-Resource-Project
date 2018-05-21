@@ -232,22 +232,50 @@ public class AdminScreenController implements Initializable {
 
     @FXML
     public void removeEmployeeButton(ActionEvent event) throws SQLException{
-        DatabaseC.getInstance().removeEmployee(removeEmployeeTextField.getText());
-        userTable.setItems(getContacts());
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setTitle("Wrong input");
+        error.setHeaderText("Input error");
+
+        if(removeEmployeeTextField.getText().matches("\\d{6}-\\d{4}")){
+            DatabaseC.getInstance().removeEmployee(removeEmployeeTextField.getText());
+            userTable.setItems(getContacts());
+        }else if(!removeEmployeeTextField.getText().matches("\\d{6}-\\d{4}")){
+            error.setContentText("Input SSN in this format: 'NNNNNN-NNNN'");
+            error.showAndWait();
+        }
+
     }
 
     public void viewEmployeeButton(ActionEvent event) throws SQLException{
-        setTextFieldAccess(true);
-        adminTabPane.getSelectionModel().select(editEmployeeTab);
-        loadUserInfo();
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setTitle("Wrong input");
+        error.setHeaderText("Input error");
+
+        if(removeEmployeeTextField.getText().matches("\\d{6}-\\d{4}")){
+            setTextFieldAccess(true);
+            adminTabPane.getSelectionModel().select(editEmployeeTab);
+            loadUserInfo();
+        }else if(!removeEmployeeTextField.getText().matches("\\d{6}-\\d{4}")){
+            error.setContentText("Input SSN in this format: 'NNNNNN-NNNN'");
+            error.showAndWait();
+        }
     }
 
     public void editEmployeeButton(ActionEvent event) throws SQLException{
-        editEmployeeTab.setDisable(false);
-        adminTabPane.getSelectionModel().select(editEmployeeTab);
-        setTextFieldAccess(false);
-        loadUserInfo();
-        userTable.setItems(getContacts());
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setTitle("Wrong input");
+        error.setHeaderText("Input error");
+
+        if(removeEmployeeTextField.getText().matches("\\d{6}-\\d{4}")) {
+            editEmployeeTab.setDisable(false);
+            adminTabPane.getSelectionModel().select(editEmployeeTab);
+            setTextFieldAccess(false);
+            loadUserInfo();
+            userTable.setItems(getContacts());
+        }else if(!removeEmployeeTextField.getText().matches("\\d{6}-\\d{4}")){
+            error.setContentText("Input SSN in this format: 'NNNNNN-NNNN'");
+            error.showAndWait();
+        }
     }
 
     public void saveEditsButton() throws SQLException{
@@ -269,63 +297,76 @@ public class AdminScreenController implements Initializable {
 
     @FXML
     public void reportsButton(ActionEvent event) throws SQLException{
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setTitle("Wrong input");
+        error.setHeaderText("Input error");
 
         String emp = removeEmployeeTextField.getText();
         String month = requestedReportMonth.getText();
-        employment = DatabaseC.getInstance().getEmploymentInformation(emp);
-        int salary = Integer.parseInt(employment.getSalary());
-        int hours = DatabaseC.getInstance().totalHours(month,emp);
 
+        if(emp.matches("\\d{6}-\\d{4}") && month.matches("\\d{2}")){
 
-        String companyName = "Your company\nFinance Department\nBaker Street 221b\n";
-        String title    = "----------------------------SalaryReport-----------------------------\n" +
-                          "                                      2018-"+requestedReportMonth.getText();
-        String fillers2 = "----------------------------------------------------------------------------";
-        String description = "Description";
-        String hs = "Hours";
-        String amount = "Amount";
+            employment = DatabaseC.getInstance().getEmploymentInformation(emp);
+            int salary = Integer.parseInt(employment.getSalary());
+            int hours = DatabaseC.getInstance().totalHours(month,emp);
 
-        Document report = new Document(PageSize.A4);
+            String companyName = "Your company\nFinance Department\nBaker Street 221b\n";
+            String title    = "----------------------------SalaryReport-----------------------------\n" +
+                    "                                      2018-"+requestedReportMonth.getText();
+            String fillers2 = "----------------------------------------------------------------------------";
+            String description = "Description";
+            String hs = "Hours";
+            String amount = "Amount";
 
-        try{
-            PdfWriter.getInstance(report, new FileOutputStream("SalaryReport.pdf"));
-            report.open();
-            report.add(new Paragraph(companyName));
-            report.add(new Paragraph(title, FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD, BaseColor.BLUE)));
-            report.add(new Paragraph(fillers2,FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD, BaseColor.BLACK)));
-            report.add(new Paragraph(String.format("%-60s %-60s %-60s", description,hs,amount)));
-            report.add(new Paragraph(String.format("%-63s %-63s %-60s", "Salary", hours,hours*salary)));
-        }catch(Exception s){
-            System.out.println("Error");
+            Document report = new Document(PageSize.A4);
+
+            try{
+                PdfWriter.getInstance(report, new FileOutputStream("SalaryReport.pdf"));
+                report.open();
+                report.add(new Paragraph(companyName));
+                report.add(new Paragraph(title, FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD, BaseColor.BLUE)));
+                report.add(new Paragraph(fillers2,FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD, BaseColor.BLACK)));
+                report.add(new Paragraph(String.format("%-60s %-60s %-60s", description,hs,amount)));
+                report.add(new Paragraph(String.format("%-63s %-63s %-60s", "Salary", hours,hours*salary)));
+            }catch(Exception s){
+                System.out.println("Error");
+            }
+            report.close();
+        }else if(!emp.matches("\\d{6}-\\d{4}")){
+            error.setContentText("Input SSN in this format: 'NNNNNN-NNNN'");
+            error.showAndWait();
+        }else if(!month.matches("\\d{2}")){
+            error.setContentText("Input MONTH in this format: 'MM'");
+            error.showAndWait();
         }
-        report.close();
+
     }
 
     public void loadUserInfo() throws SQLException{
-        user = DatabaseC.getInstance().getPersonalInformation(removeEmployeeTextField.getText());
-        employment = DatabaseC.getInstance().getEmploymentInformation(removeEmployeeTextField.getText());
-        skills = DatabaseC.getInstance().getSkills(removeEmployeeTextField.getText());
 
-        editFirstNameTextField.setText(user.getName());
-        editLastNameTextField.setText(user.getLastName());
-        editEmailTextField.setText(user.getEmail());
-        editPhoneTextField.setText(user.getPhone1());
-        editAdressTextField.setText(user.getAddress());
+            user = DatabaseC.getInstance().getPersonalInformation(removeEmployeeTextField.getText());
+            employment = DatabaseC.getInstance().getEmploymentInformation(removeEmployeeTextField.getText());
+            skills = DatabaseC.getInstance().getSkills(removeEmployeeTextField.getText());
 
-        editSalaryTextField.setText(employment.getSalary());
-        editStartDateTextField.setText(employment.getEmploymentDate());
-        editEndDateTextField.setText(employment.getLastEmploymentDate());
-        editEmploymentTextField.setText(employment.getEmployment());
-        editStatusTextField.setText(employment.getStatus());
+            editFirstNameTextField.setText(user.getName());
+            editLastNameTextField.setText(user.getLastName());
+            editEmailTextField.setText(user.getEmail());
+            editPhoneTextField.setText(user.getPhone1());
+            editAdressTextField.setText(user.getAddress());
+
+            editSalaryTextField.setText(employment.getSalary());
+            editStartDateTextField.setText(employment.getEmploymentDate());
+            editEndDateTextField.setText(employment.getLastEmploymentDate());
+            editEmploymentTextField.setText(employment.getEmployment());
+            editStatusTextField.setText(employment.getStatus());
 
         /*editSkillCategoryTextField.setText(skills.getSkillCategory());
         editSkillTextField.setText(skills.getSkill());
         editLevelTextField.setText(skills.getLevel());
         editExperienceTextField.setText(skills.getExperience());*/
 
-        editPasswordTextField.setText(user.getPassword());
-        editAccessTextField.setText(user.getAccess());
-
+            editPasswordTextField.setText(user.getPassword());
+            editAccessTextField.setText(user.getAccess());
     }
 
     public void setTextFieldAccess(boolean val){
