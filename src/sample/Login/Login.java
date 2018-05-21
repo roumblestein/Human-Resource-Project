@@ -3,7 +3,6 @@ package sample.Login;
 import javafx.fxml.Initializable;
 
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.Database.DatabaseC;
+
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -62,8 +62,6 @@ public class Login implements Initializable {
     public void loginButton(ActionEvent event) throws IOException, SQLException {
         writeRememberMe();
         try {
-
-
             if (SsnText.getText().isEmpty() || PasswordText.getText().isEmpty()) {
                 ssnw.setText("Enter details in empty fields!");
                 Toolkit.getDefaultToolkit().beep();
@@ -81,11 +79,11 @@ public class Login implements Initializable {
 
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
-                        Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+                       /* Alert dialog = new Alert(Alert.AlertType.INFORMATION);
                         dialog.setTitle("INFORMATION");
                         dialog.setHeaderText("Don't forget the Time Stamp");
                         dialog.setContentText("Always use the Time Stamp when you start working !");
-                        dialog.showAndWait();
+                        dialog.showAndWait();*/
 
                     }else if(DatabaseC.getInstance().checkAccess(SsnText.getText())){
                         currentUserSsn = SsnText.getText();
@@ -155,11 +153,10 @@ public class Login implements Initializable {
 
     /*Saves Ssn in a file*/
 
+
     private void writeRememberMe() throws IOException {
         File file = new File("user.txt");
-        // if (!file.exists()) {
-        //     file.createNewFile();
-        // }
+
 
         Path path = Paths.get("user.txt");
 
