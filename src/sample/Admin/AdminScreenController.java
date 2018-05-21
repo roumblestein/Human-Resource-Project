@@ -122,21 +122,112 @@ public class AdminScreenController implements Initializable {
 
     @FXML
     public void addEmployeeButton(ActionEvent event)  throws SQLException{
-        User newUser = new User(ssnTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(),
-                adressTextField.getText(), phoneTextField.getText(), "1", passwordTextField.getText(), "User");
 
-        Employment employment = new Employment(salaryTextField.getText(), employmentType.getValue(), status.getValue(),
-                startDateTextField.getText(), endDateTextField.getText());
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setTitle("Wrong input");
+        error.setHeaderText("Input error");
 
-        Skills skills = new Skills("1", skill.getValue(),level.getValue(), experience.getValue(), "5");
+        /*String _department  = "";
+        if(department.getValue() == "IT"){
+            _department = "1";
+        }else if(department.getValue() == "Finance"){
+            _department = "2";
+        }else if(department.getValue() == "Sales"){
+            _department = "3";
+        }
 
-        DatabaseC.getInstance().addEmployee(newUser,employment,skills);
-        Alert dialog = new Alert(Alert.AlertType.INFORMATION);
-        dialog.setTitle("INFORMATION");
-        dialog.setHeaderText("Employee created!");
-        dialog.setContentText("New employee: "+firstNameTextField.getText() +" "+ lastNameTextField.getText() );
-        dialog.showAndWait();
-        userTable.setItems(getContacts());
+        String _skillCategory = "";
+        if(skillCategory.getValue() == "Programming"){
+            _skillCategory = "1";
+        }else if(skillCategory.getValue() == "DB"){
+            _skillCategory = "2";
+        }*/
+
+        if(ssnTextField.getText().matches("\\d{6}-\\d{4}") && firstNameTextField.getText().matches("[a-zA-Z]+")
+                && lastNameTextField.getText().matches("[a-zA-Z]+") && !emailTextField.getText().isEmpty()
+                && phoneTextField.getText().matches("[0-9]+") && !adressTextField.getText().isEmpty()
+                && salaryTextField.getText().matches("[0-9]+") && startDateTextField.getText().matches("\\d{4}-\\d{2}-\\d{2}")
+                && endDateTextField.getText().matches("\\d{4}-\\d{2}-\\d{2}") && employmentType.getValue() != null
+                && status.getValue() != null && department.getValue() != null && skillCategory.getValue() != null && skill.getValue() != null
+                && level.getValue() != null && experience.getValue() != null && !passwordTextField.getText().isEmpty()){
+
+            System.out.println("Employee added test 121212");
+
+            User newUser = new User(ssnTextField.getText(), firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(),
+                    adressTextField.getText(), phoneTextField.getText(), "1", passwordTextField.getText(), "User");
+
+
+            Employment employment = new Employment(salaryTextField.getText(), employmentType.getValue(), status.getValue(),
+                    startDateTextField.getText(), endDateTextField.getText());
+
+
+            Skills skills = new Skills("1", skill.getValue(),level.getValue(), experience.getValue(), "5");
+
+            DatabaseC.getInstance().addEmployee(newUser,employment,skills);
+            System.out.println("Employee added");
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+            dialog.setTitle("INFORMATION");
+            dialog.setHeaderText("Employee created!");
+            dialog.setContentText("New employee: "+firstNameTextField.getText() +" "+ lastNameTextField.getText() );
+            dialog.showAndWait();
+            userTable.setItems(getContacts());
+
+        }else if(!ssnTextField.getText().matches("\\d{6}-\\d{4}")){
+            error.setContentText("Input SSN in this format: 'NNNNNN-NNNN'");
+            error.showAndWait();
+        }else if(!firstNameTextField.getText().matches("[a-zA-Z]+")){
+            error.setContentText("Name can only contain letters!");
+            error.showAndWait();
+        }else if(!lastNameTextField.getText().matches("[a-zA-Z]+")){
+            error.setContentText("Lastname can only contain letters");
+            error.showAndWait();
+        }else if(emailTextField.getText().isEmpty()){
+            error.setContentText("Email box may not be empty");
+            error.showAndWait();
+        }else if(!phoneTextField.getText().matches("[0-9]+")){
+            error.setContentText("Phone can only contain numbers");
+            error.showAndWait();
+        }else if(adressTextField.getText().isEmpty()){
+            error.setContentText("Adress box may not be empty");
+            error.showAndWait();
+        }else if(!salaryTextField.getText().matches("[0-9]+")){
+            error.setContentText("Salary box may only contain numbers");
+            error.showAndWait();
+        }else if(!startDateTextField.getText().matches("\\d{4}-\\d{2}-\\d{2}")){
+            error.setContentText("Input start date in this format: 'yyyy-mm-dd'");
+            error.showAndWait();
+        }else if(!endDateTextField.getText().matches("\\d{4}-\\d{2}-\\d{2}")){
+            error.setContentText("Input end date in this format: 'yyyy-mm-dd'");
+            error.showAndWait();
+        }else if(employmentType.getValue() == null){
+            error.setContentText("Choose employment type");
+            error.showAndWait();
+        }else if(status.getValue() == null){
+            error.setContentText("Choose status");
+            error.showAndWait();
+        }else if(department.getValue() == null){
+            error.setContentText("Choose department");
+            error.showAndWait();
+        }else if(skillCategory.getValue() == null){
+            error.setContentText("Choose skill category");
+            error.showAndWait();
+        }else if(skill.getValue() == null){
+            error.setContentText("Choose skill");
+            error.showAndWait();
+        }else if(level.getValue() == null){
+            error.setContentText("Choose level");
+            error.showAndWait();
+        }else if(experience.getValue() == null){
+            error.setContentText("Choose experience");
+            error.showAndWait();
+        }else if(passwordTextField.getText().isEmpty()){
+            error.setContentText("Password box may not be empty");
+            error.showAndWait();
+        }
+
+
+
+
 }
 
     @FXML
@@ -313,7 +404,9 @@ public class AdminScreenController implements Initializable {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
 
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/Login/LoginSample.fxml"));
+
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
