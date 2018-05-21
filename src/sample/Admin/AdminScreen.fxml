@@ -79,26 +79,24 @@
                               <Image url="@../../Images/adminImage3.png" />
                            </image>
                         </ImageView>
+                        <TextField fx:id="ssnTextField" layoutX="43.0" layoutY="27.0" promptText="SSN" />
+                        <TextField fx:id="firstNameTextField" layoutX="43.0" layoutY="82.0" promptText="First Name" />
+                        <TextField fx:id="lastNameTextField" layoutX="43.0" layoutY="131.0" promptText="Last Name" />
+                        <TextField fx:id="emailTextField" layoutX="43.0" layoutY="179.0" promptText="Email" />
+                        <TextField fx:id="phoneTextField" layoutX="43.0" layoutY="226.0" promptText="Phone" />
+                        <TextField fx:id="adressTextField" layoutX="43.0" layoutY="275.0" promptText="Address" />
+                        <TextField fx:id="salaryTextField" layoutX="232.0" layoutY="27.0" promptText="Salary" />
+                        <TextField fx:id="startDateTextField" layoutX="232.0" layoutY="82.0" promptText="Start Date" />
+                        <TextField fx:id="endDateTextField" layoutX="232.0" layoutY="132.0" promptText="End Date" />
+                        <ChoiceBox fx:id="employmentType" layoutX="231.0" layoutY="179.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="status" layoutX="231.0" layoutY="226.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="department" layoutX="231.0" layoutY="275.0" prefWidth="150.0" />
                         <ChoiceBox fx:id="skillCategory" layoutX="418.0" layoutY="27.0" prefWidth="150.0" />
                         <ChoiceBox fx:id="skill" layoutX="418.0" layoutY="82.0" prefWidth="150.0" />
-                        <ChoiceBox fx:id="status" layoutX="231.0" layoutY="226.0" prefWidth="150.0" />
                         <ChoiceBox fx:id="level" layoutX="418.0" layoutY="131.0" prefWidth="150.0" />
-                        <ChoiceBox fx:id="department" layoutX="231.0" layoutY="275.0" prefWidth="150.0" />
-                        <ChoiceBox fx:id="employmentType" layoutX="231.0" layoutY="179.0" prefWidth="150.0" />
                         <ChoiceBox fx:id="experience" layoutX="418.0" layoutY="179.0" prefWidth="150.0" />
-                        <TextField fx:id="adressTextField" layoutX="43.0" layoutY="275.0" promptText="Address" />
-                        <TextField fx:id="phoneTextField" layoutX="43.0" layoutY="226.0" promptText="Phone" />
-                        <TextField fx:id="emailTextField" layoutX="43.0" layoutY="179.0" promptText="Email" />
-                        <TextField fx:id="lastNameTextField" layoutX="43.0" layoutY="131.0" promptText="Last Name" />
-                        <TextField fx:id="firstNameTextField" layoutX="43.0" layoutY="82.0" promptText="First Name" />
-                        <TextField fx:id="ssnTextField" layoutX="43.0" layoutY="27.0" promptText="SSN" />
-                        <TextField fx:id="endDateTextField" layoutX="232.0" layoutY="132.0" promptText="End Date" />
-                        <TextField fx:id="startDateTextField" layoutX="232.0" layoutY="82.0" promptText="Start Date" />
-                        <TextField fx:id="salaryTextField" layoutX="232.0" layoutY="27.0" promptText="Salary" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7ddb4" height="331.0" layoutX="613.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="201.0" />
-                        <TextField fx:id="passwordTextField" layoutX="639.0" layoutY="27.0" promptText="Password" />
                         <Button layoutX="653.0" layoutY="226.0" mnemonicParsing="false" onAction="#addEmployeeButton" prefHeight="25.0" prefWidth="122.0" text="Submit" />
-                        <Button layoutX="653.0" layoutY="263.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="&lt;&lt;Go back   " />
                         <Text layoutX="272.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employment" />
                         <Text layoutX="290.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
                         <Text layoutX="274.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" />
@@ -106,6 +104,7 @@
                         <Text layoutX="482.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skill" />
                         <Text layoutX="480.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level" />
                         <Text layoutX="464.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Experience" />
+                        <TextField fx:id="passwordTextField" layoutX="639.0" layoutY="27.0" promptText="Password" />
                      </children>
                   </AnchorPane>
             </content>
